@@ -974,7 +974,7 @@
             renderBills(); // render marquee bill
 
             const navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-            const detected = navLang.startsWith('vi') ? 'vi' : 'en';
+            const detected = navLang.startsWith('en') ? 'vi' : 'en';
             applyLanguage(detected);
             currentLang = detected;
         });

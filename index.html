@@ -1,38 +1,111 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUTO FARM CLASH OF CLANS</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- BASIC SEO -->
+    <meta name="title" content="Clash Bot X – AutoFarm 24/7 & Auto Wall Upgrade">
+    <meta name="description"
+        content="Clash Bot X – The smartest Clash of Clans auto-farming bot. Supports auto attack, random troop drop, multi-account farming, auto wall upgrades, and builder automation. Contact: Instagram @hna.naut_23 – Telegram @nemran23">
+    <meta name="keywords"
+        content="clash of clans bot, auto farm coc, coc bot, coc macro, auto wall upgrade, clash bot x, autofarm coc, coc farming tool, multi account coc bot">
+    <meta name="author" content="AutoFarm CoC">
+
+    <!-- VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- OPEN GRAPH (FACEBOOK, ZALO, DISCORD PREVIEW) -->
+    <meta property="og:title" content="Clash Bot X – AutoFarm 24/7 & Auto Wall Upgrade">
+    <meta property="og:description"
+        content="AutoFarm CoC bot – auto attack, auto wall upgrade, random troop drop, multi-account support. The best farming automation tool for Clash of Clans.">
+    <meta property="og:image" content="https://autofarmcoc.shop/thumbnail.jpg">
+    <meta property="og:url" content="https://autofarmcoc.shop/">
+    <meta property="og:type" content="website">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clash Bot X – AutoFarm 24/7 & Auto Wall Upgrade">
+    <meta name="twitter:description"
+        content="Auto wall upgrade, auto attack, auto farming, multi-account support. The smartest CoC farming bot.">
+    <meta name="twitter:image" content="https://autofarmcoc.shop/thumbnail.jpg">
+
+    <!-- ROBOTS -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/icons/autofarmcoc-logo-512.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/icons/autofarmcoc-logo-512.png">
+
+    <!-- (optional) Icon cho mobile / iOS -->
+    <link rel="apple-touch-icon" href="/assets/icons/autofarmcoc-logo-512.png">
+
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://autofarmcoc.shop/">
+
+    <!-- STRUCTURED DATA FOR GOOGLE SEO -->
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Clash Bot X – AutoFarm CoC",
+  "operatingSystem": "Windows",
+  "applicationCategory": "AutomationTool",
+  "description": "AutoFarm Clash of Clans bot with auto attack, random troop dropping, auto wall upgrade, and multi-account support.",
+  "url": "https://autofarmcoc.shop/",
+  "author": {
+    "@type": "Person",
+    "name": "Tuan Anh"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "15",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
     <style>
         /* --- VARIABLES & THEME --- */
         :root {
-            --bg-dark: #050510; /* MÀU NỀN CỰC TỐI */
+            --bg-dark: #050510;
+            /* MÀU NỀN CỰC TỐI */
             --bg-panel: #0f1325;
-            --primary: #6366f1; /* Tím Công nghệ */
+            --primary: #6366f1;
+            /* Tím Công nghệ */
             --primary-dark: #4f46e5;
             --primary-glow: rgba(99, 102, 241, 0.4);
-            --accent: #fcd34d; /* Vàng Lấp lánh */
+            --accent: #fcd34d;
+            /* Vàng Lấp lánh */
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --success: #10b981;
-            
+
             --glass-bg: rgba(255, 255, 255, 0.04);
             --glass-border: rgba(99, 102, 241, 0.15);
             --radius-md: 12px;
             --radius-lg: 20px;
             --radius-full: 999px;
-            
+
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* --- RESET & BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
@@ -41,7 +114,7 @@
             min-height: 100vh;
 
             /* --- NỀN NEBULA (TINH VÂN) --- */
-            background-image: 
+            background-image:
                 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity=".02"><rect fill="#fff" width="100%" height="100%"/><path d="M0 0h100v100H0z" fill="none"/></svg>'),
                 linear-gradient(rgba(5, 5, 16, 0.9), rgba(5, 5, 16, 0.9)),
                 radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 40%),
@@ -53,34 +126,100 @@
         }
 
         /* --- UTILITIES & ANIMATIONS --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .flex-center { display: flex; align-items: center; justify-content: center; }
-        .flex-between { display: flex; align-items: center; justify-content: space-between; }
-        .gap-2 { gap: 16px; } .mt-2 { margin-top: 20px; } .mb-2 { margin-bottom: 20px; }
-        .text-center { text-align: center; }
-        .text-muted { color: var(--text-muted); }
-        .w-full { width: 100%; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .gap-2 {
+            gap: 16px;
+        }
+
+        .mt-2 {
+            margin-top: 20px;
+        }
+
+        .mb-2 {
+            margin-bottom: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .w-full {
+            width: 100%;
+        }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .animate-up { animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+
+        .animate-up {
+            animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
 
         /* --- FIXED BARS (LEFT & RIGHT) --- */
         .fixed-bar {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 90; /* Dưới Navbar */
+            z-index: 90;
+            /* Dưới Navbar */
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .quick-links-bar { left: 20px; }
-        .contact-bar { right: 20px; }
+        .quick-links-bar {
+            left: 20px;
+        }
+
+        .contact-bar {
+            right: 20px;
+        }
 
         .fixed-btn {
             width: 45px;
@@ -107,192 +246,386 @@
         }
 
         /* CSS riêng cho nút Zalo và Tele & IG */
-        .contact-bar .fixed-btn:nth-child(1) { background-color: #0068ff; color: white; border-color: #0068ff; } /* Zalo */
-        .contact-bar .fixed-btn:nth-child(2) { background-color: #0088cc; color: white; border-color: #0088cc; } /* Telegram */
-        .contact-bar .fixed-btn:nth-child(3) { 
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-            color: white; border-color: #cc2366; 
-        } /* Instagram */
-        .contact-bar .fixed-btn:nth-child(4) { background-color: var(--primary); color: white; border-color: var(--primary); } /* Pricing */
-        
+        .contact-bar .fixed-btn:nth-child(1) {
+            background-color: #0068ff;
+            color: white;
+            border-color: #0068ff;
+        }
+
+        /* Zalo */
+        .contact-bar .fixed-btn:nth-child(2) {
+            background-color: #0088cc;
+            color: white;
+            border-color: #0088cc;
+        }
+
+        /* Telegram */
+        .contact-bar .fixed-btn:nth-child(3) {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border-color: #cc2366;
+        }
+
+        /* Instagram */
+        .contact-bar .fixed-btn:nth-child(4) {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Pricing */
+
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
-            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+            0% {
+                box-shadow: 0 0 0 0 var(--primary-glow);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
         }
 
         /* --- BUTTONS --- */
         .btn {
-            display: inline-flex; align-items: center; gap: 8px; justify-content: center;
-            padding: 12px 28px; border-radius: var(--radius-full);
-            font-weight: 700; text-decoration: none; cursor: pointer; border: none;
-            transition: var(--transition); font-size: 0.95rem;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             box-shadow: 0 4px 20px var(--primary-glow);
         }
-        .btn-primary:hover { 
-            transform: translateY(-2px) scale(1.02); 
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 30px var(--primary-glow), 0 0 40px var(--primary-glow);
         }
+
         .btn-outline {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glass-border);
             color: white;
             backdrop-filter: blur(4px);
         }
-        .btn-outline:hover { 
-            background: rgba(255,255,255,0.1); 
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--primary);
             transform: translateY(-1px);
         }
 
         /* --- NAVBAR & LOGO --- */
-        nav { 
-            position: fixed; 
-            top: 0; 
+        nav {
+            position: fixed;
+            top: 0;
             width: 100%;
-            z-index: 100; 
-            background: rgba(5, 5, 16, 0.9); 
-            backdrop-filter: blur(10px); 
-            border-bottom: 1px solid var(--glass-border); 
-            height: 70px; 
-            display: flex; 
+            z-index: 100;
+            background: rgba(5, 5, 16, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            height: 70px;
+            display: flex;
             align-items: center;
         }
+
         .logo {
-            font-family: 'Orbitron', sans-serif; 
-            font-size: 1.6rem; font-weight: 800; letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
             background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .logo i { color: var(--accent); -webkit-text-fill-color: initial; }
+
+        .logo i {
+            color: var(--accent);
+            -webkit-text-fill-color: initial;
+        }
 
         /* --- HERO SECTION --- */
-/* --- HERO SECTION --- */
-.hero {
-    padding: 180px 0 100px;
-    text-align: center;
-    position: relative;   /* để đặt background tuyệt đối */
-    overflow: hidden;     /* cắt phần ảnh thừa ra ngoài */
-}
-/* nền hero với ảnh bot / game */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('assets/img/bg-me.jpg'); /* đổi link nếu cậu dùng ảnh khác */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    opacity: 0.18;              /* độ mờ để chữ vẫn đọc được */
-    mix-blend-mode: screen;     /* tạo cảm giác glow nhẹ, nhìn “tech” hơn */
-    pointer-events: none;
-    z-index: -1;                /* nằm sau toàn bộ nội dung hero */
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            /* để đặt background tuyệt đối */
+            overflow: hidden;
+            /* cắt phần ảnh thừa ra ngoài */
+        }
+
+        /* nền hero với ảnh bot / game */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('assets/img/bg-me.jpg');
+            /* đổi link nếu cậu dùng ảnh khác */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            opacity: 0.18;
+            /* độ mờ để chữ vẫn đọc được */
+            mix-blend-mode: screen;
+            /* tạo cảm giác glow nhẹ, nhìn “tech” hơn */
+            pointer-events: none;
+            z-index: -1;
+            /* nằm sau toàn bộ nội dung hero */
+        }
 
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
             background: linear-gradient(to bottom right, #e0e7ff 30%, var(--primary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
         }
-        .hero p { color: var(--text-muted); font-size: 1.25rem; max-width: 700px; margin: 0 auto 40px; }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
         .hero h1 span {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
 
         /* Trusted Logos */
-        .trusted-by { margin-top: 50px; }
-        .trusted-by-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 20px; flex-wrap: wrap;}
-        .game-logo { height: 40px; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
-        .game-logo:hover { filter: grayscale(0%) opacity(0.8); }
+        .trusted-by {
+            margin-top: 50px;
+        }
+
+        .trusted-by-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .game-logo {
+            height: 40px;
+            filter: grayscale(100%) opacity(0.5);
+            transition: 0.3s;
+        }
+
+        .game-logo:hover {
+            filter: grayscale(0%) opacity(0.8);
+        }
 
         /* --- VIDEO & BROWSER FRAME --- */
-        .demo-section { perspective: 1200px; margin-bottom: 100px; }
+        .demo-section {
+            perspective: 1200px;
+            margin-bottom: 100px;
+        }
+
         .browser-frame {
-            background: #1e1e1e; border-radius: var(--radius-lg);
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow); 
+            background: #1e1e1e;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow);
             border: 2px solid var(--primary);
-            overflow: hidden; max-width: 900px; margin: 0 auto;
-            transform: rotateX(5deg); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            transform: rotateX(5deg);
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .browser-frame:hover { transform: rotateX(0deg) translateY(-10px); }
+
+        .browser-frame:hover {
+            transform: rotateX(0deg) translateY(-10px);
+        }
+
         .browser-header {
-            background: #252526; padding: 12px 16px;
-            display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #333;
+            background: #252526;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #333;
         }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
+
         .address-bar {
-            margin-left: 12px; flex-grow: 1; background: #111;
-            padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; color: #888;
-            display: flex; align-items: center; font-family: monospace;
+            margin-left: 12px;
+            flex-grow: 1;
+            background: #111;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            font-family: monospace;
         }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .yt-bar {
-            padding: 16px 24px; background: #18181b; border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+            padding: 16px 24px;
+            background: #18181b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        .yt-info { display: flex; align-items: center; gap: 12px; }
-        .yt-avatar { width: 40px; height: 40px; border-radius: 50%; }
+
+        .yt-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .yt-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
         .yt-btn {
-            background: #cc0000; color: white; padding: 8px 20px; border-radius: 20px;
-            font-weight: 600; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px;
+            background: #cc0000;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: 0.2s;
         }
-        .yt-btn:hover { background: #ff0000; transform: translateY(-1px); }
+
+        .yt-btn:hover {
+            background: #ff0000;
+            transform: translateY(-1px);
+        }
 
         /* --- FEATURES --- */
         .features {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 80px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
         }
+
         .feature-card {
-            background: var(--glass-bg); 
+            background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 32px; border-radius: var(--radius-lg); 
+            padding: 32px;
+            border-radius: var(--radius-lg);
             transition: var(--transition);
             backdrop-filter: blur(10px);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             position: relative;
         }
+
         .feature-card:hover {
             transform: translateY(-8px) scale(1.02);
             border-color: var(--primary);
             box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
         }
+
         .icon-box {
-            width: 56px; height: 56px;
-            background: var(--primary-glow); 
-            color: white; 
-            display: flex; align-items: center; justify-content: center;
-            border-radius: var(--radius-md); font-size: 1.5rem; margin-bottom: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary-glow);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
             box-shadow: 0 0 15px var(--primary-glow);
         }
-        .feature-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
         /* --- MARQUEE & BILL CARDS --- */
-        .section-title { text-align: center; margin-bottom: 40px; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 12px; font-weight: 700; }
-        
-        .marquee-wrapper { 
-            overflow: hidden; 
-            padding: 20px 0; 
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            padding: 20px 0;
             position: relative;
-            mask-image: linear-gradient(to right, 
-                transparent 0%, 
-                black 10%, 
-                black 90%, 
-                transparent 100%);
+            mask-image: linear-gradient(to right,
+                    transparent 0%,
+                    black 10%,
+                    black 90%,
+                    transparent 100%);
         }
 
         .marquee-container {
@@ -300,113 +633,231 @@
             width: fit-content;
             animation: scrolling 60s linear infinite;
         }
+
         .marquee-container:hover {
             animation-play-state: paused;
         }
 
         @keyframes scrolling {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .feedback-card {
             min-width: 260px;
             flex-shrink: 0;
-            background: var(--glass-bg); 
+            background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md); 
-            padding: 16px; 
+            border-radius: var(--radius-md);
+            padding: 16px;
             margin: 0 10px;
             transition: var(--transition);
             backdrop-filter: blur(8px);
-            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             cursor: pointer;
         }
+
         .feedback-card:hover {
-             transform: translateY(-5px);
-             border-color: var(--accent);
-             box-shadow: 0 5px 20px rgba(252, 211, 77, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 20px rgba(252, 211, 77, 0.2);
         }
 
         .demo-img {
-            width: 100%; 
+            width: 100%;
             max-height: 220px;
-            border-radius: 8px; 
+            border-radius: 8px;
             object-fit: contain;
-            background: #020617; 
+            background: #020617;
             display: block;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .demo-caption { margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; padding: 0 4px; }
-        .feedback-author { font-weight: 700; color: var(--accent); margin-top: 10px; font-size: 0.9rem; display: block; }
-        .feedback-click-note { 
-            font-size: 0.75rem; 
-            color: var(--primary); 
-            margin-top: 10px; 
-            font-style: italic; 
-            display: block; 
+
+        .demo-caption {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            padding: 0 4px;
+        }
+
+        .feedback-author {
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .feedback-click-note {
+            font-size: 0.75rem;
+            color: var(--primary);
+            margin-top: 10px;
+            font-style: italic;
+            display: block;
             text-align: right;
         }
 
         /* --- PRICING --- */
         .pricing-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
         }
+
         .price-card {
-            background: var(--bg-panel); border: 1px solid var(--glass-border);
-            padding: 40px 30px; border-radius: var(--radius-lg);
-            width: 350px; text-align: center; position: relative;
-            transition: var(--transition); display: flex; flex-direction: column;
-            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
         }
-        .price-card:hover { 
+
+        .price-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2); 
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
             border-color: var(--primary-dark);
         }
+
         .price-card.featured {
             border: 2px solid var(--primary);
             background: linear-gradient(180deg, rgba(99, 102, 241, 0.15) 0%, var(--bg-panel) 100%);
             box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
-            transform: scale(1.05); z-index: 2;
+            transform: scale(1.05);
+            z-index: 2;
         }
-        .price-card.featured:hover { transform: scale(1.07) translateY(-8px); }
+
+        .price-card.featured:hover {
+            transform: scale(1.07) translateY(-8px);
+        }
+
         .tag-popular {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            background: var(--primary); color: white; padding: 6px 16px;
-            border-radius: 20px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px;
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
             box-shadow: 0 4px 12px var(--primary-glow);
         }
-        .price-val { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--accent); margin: 24px 0 4px; line-height: 1; }
-        .price-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; display: block; min-height: 42px; }
-        .check-list { list-style: none; text-align: left; margin-bottom: 30px; flex-grow: 1; }
-        .check-list li {
-            margin-bottom: 14px; color: #cbd5e1; display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem;
+
+        .price-val {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 24px 0 4px;
+            line-height: 1;
         }
-        .check-list i { color: var(--success); margin-top: 4px; flex-shrink: 0; }
-        
+
+        .price-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            display: block;
+            min-height: 42px;
+        }
+
+        .check-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .check-list li {
+            margin-bottom: 14px;
+            color: #cbd5e1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .check-list i {
+            color: var(--success);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
         /* --- MODAL --- */
-        .modal.show { opacity: 1 !important; }
-        .modal.show .modal-box { transform: scale(1) !important; }
-        .pay-tab.active { background: var(--primary); color: white !important; box-shadow: 0 4px 10px var(--primary-glow); }
-        #toast.show { visibility: visible !important; opacity: 1 !important; bottom: 50px !important; }
-        
+        .modal.show {
+            opacity: 1 !important;
+        }
+
+        .modal.show .modal-box {
+            transform: scale(1) !important;
+        }
+
+        .pay-tab.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        #toast.show {
+            visibility: visible !important;
+            opacity: 1 !important;
+            bottom: 50px !important;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 1240px) {
-            .quick-links-bar { left: 5px; }
-            .contact-bar { right: 5px; }
+            .quick-links-bar {
+                left: 5px;
+            }
+
+            .contact-bar {
+                right: 5px;
+            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .price-card.featured { transform: scale(1); }
-            .price-card.featured:hover { transform: translateY(-5px); }
-            .feedback-card { min-width: 90vw; }
-            .game-logo { height: 30px; }
-            .fixed-bar { display: none; }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .price-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
+            .feedback-card {
+                min-width: 90vw;
+            }
+
+            .game-logo {
+                height: 30px;
+            }
+
+            .fixed-bar {
+                display: none;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- QUICK NAV LEFT -->
@@ -428,7 +879,8 @@
         <a href="#" id="igLinkFixed" target="_blank" class="fixed-btn" title="Hỗ Trợ Instagram">
             <i class="fa-brands fa-instagram"></i>
         </a>
-        <button onclick="openPayment('300k')" class="fixed-btn" title="Mua Key Nhanh (Hot)" style="animation: pulse 2s infinite;">
+        <button onclick="openPayment('300k')" class="fixed-btn" title="Mua Key Nhanh (Hot)"
+            style="animation: pulse 2s infinite;">
             <i class="fa-solid fa-cart-shopping"></i>
         </button>
     </div>
@@ -438,7 +890,8 @@
         <div class="container flex-between" style="width: 100%;">
             <div class="logo"><i class="fa-solid fa-ghost"></i> CLASH BOT X</div>
             <div>
-                <button id="langToggleBtn" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem; border-radius: 8px;">
+                <button id="langToggleBtn" class="btn btn-outline"
+                    style="padding: 8px 20px; font-size: 0.85rem; border-radius: 8px;">
                     VN / EN
                 </button>
             </div>
@@ -449,29 +902,27 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="animate-up delay-1">
-                <span class="badge-new" style="display:inline-block; background:rgba(252,211,77,0.1); color:var(--accent); padding: 6px 16px; border-radius:30px; font-size:0.85rem; font-weight:600; border:1px solid rgba(252,211,77,0.2); margin-bottom: 24px;"
+                <span class="badge-new"
+                    style="display:inline-block; background:rgba(252,211,77,0.1); color:var(--accent); padding: 6px 16px; border-radius:30px; font-size:0.85rem; font-weight:600; border:1px solid rgba(252,211,77,0.2); margin-bottom: 24px;"
                     data-vi="🛡️ Tối ưu Nâng Cấp Tường TH8-18" data-en="🛡️ Optimized Wall Upgrade TH8-18">
                     🛡️ Tối ưu Nâng Cấp Tường TH11-16
                 </span>
             </div>
-<h1 class="animate-up delay-2">
-    <span class="hero-line1"
-          data-vi="AutoFarm 24/7."
-          data-en="24/7 AutoFarm.">
-        AutoFarm 24/7.
-    </span>
-    <br>
-    <span class="hero-line2"
-          data-vi="Builder Không Bao Giờ Nghỉ."
-          data-en="Builders Will Never Rest.">
-        Builder Không Bao Giờ Nghỉ.
-    </span>
-</h1>
+            <h1 class="animate-up delay-2">
+                <span class="hero-line1" data-vi="AutoFarm 24/7." data-en="24/7 AutoFarm.">
+                    AutoFarm 24/7.
+                </span>
+                <br>
+                <span class="hero-line2" data-vi="Builder Không Bao Giờ Nghỉ." data-en="Builders Will Never Rest.">
+                    Builder Không Bao Giờ Nghỉ.
+                </span>
+            </h1>
 
             <p class="animate-up delay-3"
-               data-vi="Engine AI thông minh nhất, tự động farm Elixir, Gold, Dark và ưu tiên nâng tường theo chiến lược cá nhân."
-               data-en="The smartest AI engine, automating Elixir, Gold, Dark farming, and prioritizing wall upgrades.">
-                Engine AI thông minh nhất, tự động farm Elixir, Gold, Dark và ưu tiên nâng tường theo chiến lược cá nhân.
+                data-vi="Engine AI thông minh nhất, tự động farm Elixir, Gold, Dark và ưu tiên nâng tường theo chiến lược cá nhân."
+                data-en="The smartest AI engine, automating Elixir, Gold, Dark farming, and prioritizing wall upgrades.">
+                Engine AI thông minh nhất, tự động farm Elixir, Gold, Dark và ưu tiên nâng tường theo chiến lược cá
+                nhân.
             </p>
             <div class="animate-up delay-3" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                 <a href="#pricing" class="btn btn-primary">
@@ -485,7 +936,9 @@
             </div>
 
             <div class="trusted-by animate-up delay-4">
-                <p class="text-muted" style="font-size: 0.9rem;" data-vi="Được tin dùng bởi hơn 5,000 người dùng Việt Nam và quốc tế" data-en="Trusted by over 5,000 Vietnamese and international users">
+                <p class="text-muted" style="font-size: 0.9rem;"
+                    data-vi="Được tin dùng bởi hơn 5,000 người dùng Việt Nam và quốc tế"
+                    data-en="Trusted by over 5,000 Vietnamese and international users">
                     Được tin dùng bởi hơn 5,000 người dùng Việt Nam và quốc tế
                 </p>
             </div>
@@ -496,8 +949,11 @@
     <!-- DEMO VIDEO -->
     <section id="demo" class="container">
         <div class="section-title text-center mb-2">
-            <h2 style="font-size: 2.2rem; margin-bottom: 8px;" data-vi="Giao Diện Bot Thực Tế" data-en="Real Bot Interface Demo">Giao Diện Bot Thực Tế</h2>
-            <p class="text-muted" data-vi="Xem cách bot tự động tìm kiếm và tấn công (Phiên bản Streamable)." data-en="Watch how the bot automatically searches and attacks (Streamable version).">Xem cách bot tự động tìm kiếm và tấn công (Phiên bản Streamable).</p>
+            <h2 style="font-size: 2.2rem; margin-bottom: 8px;" data-vi="Giao Diện Bot Thực Tế"
+                data-en="Real Bot Interface Demo">Giao Diện Bot Thực Tế</h2>
+            <p class="text-muted" data-vi="Xem cách bot tự động tìm kiếm và tấn công (Phiên bản Streamable)."
+                data-en="Watch how the bot automatically searches and attacks (Streamable version).">Xem cách bot tự
+                động tìm kiếm và tấn công (Phiên bản Streamable).</p>
         </div>
         <div class="demo-section animate-up delay-2" style="margin-bottom: 100px;">
             <div class="browser-frame">
@@ -514,18 +970,22 @@
                 </div>
 
                 <div class="video-container">
-                    <iframe src="https://streamable.com/e/wyxe5k" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+                    <iframe src="https://streamable.com/e/wyxe5k" frameborder="0" allowfullscreen
+                        allow="autoplay"></iframe>
                 </div>
 
                 <div class="yt-bar">
                     <div class="yt-info">
-                        <img src="https://www.youtube.com/s/desktop/f8f21049/img/favicon_144.png" class="yt-avatar" alt="YT">
+                        <img src="https://www.youtube.com/s/desktop/f8f21049/img/favicon_144.png" class="yt-avatar"
+                            alt="YT">
                         <div>
                             <div style="font-weight: 700; font-size: 1rem;">
-                                <span data-vi="Kênh YouTube của chúng tôi" data-en="Our YouTube Channel">Kênh YouTube của chúng tôi</span>
+                                <span data-vi="Kênh YouTube của chúng tôi" data-en="Our YouTube Channel">Kênh YouTube
+                                    của chúng tôi</span>
                             </div>
                             <div style="color: var(--text-muted); font-size: 0.85rem;">
-                                <span data-vi="Xem thêm video hướng dẫn & update bot." data-en="Watch more tutorials & bot updates.">
+                                <span data-vi="Xem thêm video hướng dẫn & update bot."
+                                    data-en="Watch more tutorials & bot updates.">
                                     Xem thêm video hướng dẫn & update bot.
                                 </span>
                             </div>
@@ -545,17 +1005,29 @@
             <div class="feature-card animate-up delay-1">
                 <div class="icon-box"><i class="fa-solid fa-brain"></i></div>
                 <h3 data-vi="Chiến Thuật AI Tự Động" data-en="AI Auto-Strategy">Chiến Thuật AI Tự Động</h3>
-                <p class="text-muted" data-vi="Tự động chọn lính, tìm kiếm và tấn công base loot giàu nhất, bao gồm Electro Dragon, Dragon, v.v." data-en="Automatically selects troops, finds and attacks the richest loot bases, including Electro Dragon, Dragon, etc.">Tự động chọn lính, tìm kiếm và tấn công base loot giàu nhất, bao gồm Electro Dragon, Dragon, v.v.</p>
+                <p class="text-muted"
+                    data-vi="Tự động chọn lính, tìm kiếm và tấn công base loot giàu nhất, bao gồm Electro Dragon, Dragon, v.v."
+                    data-en="Automatically selects troops, finds and attacks the richest loot bases, including Electro Dragon, Dragon, etc.">
+                    Tự động chọn lính, tìm kiếm và tấn công base loot giàu nhất, bao gồm Electro Dragon, Dragon, v.v.
+                </p>
             </div>
             <div class="feature-card animate-up delay-2">
                 <div class="icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                 <h3 data-vi="Ưu Tiên Nâng Tường" data-en="Wall Prioritization">Ưu Tiên Nâng Tường</h3>
-                <p class="text-muted" data-vi="Tự động sử dụng Builder để nâng tường khi kho tài nguyên đầy, đảm bảo Builder không bao giờ rảnh rỗi." data-en="Automatically uses Builder to upgrade walls when storages are full, ensuring builders are never idle.">Tự động sử dụng Builder để nâng tường khi kho tài nguyên đầy, đảm bảo Builder không bao giờ rảnh rỗi.</p>
+                <p class="text-muted"
+                    data-vi="Tự động sử dụng Builder để nâng tường khi kho tài nguyên đầy, đảm bảo Builder không bao giờ rảnh rỗi."
+                    data-en="Automatically uses Builder to upgrade walls when storages are full, ensuring builders are never idle.">
+                    Tự động sử dụng Builder để nâng tường khi kho tài nguyên đầy, đảm bảo Builder không bao giờ rảnh
+                    rỗi.</p>
             </div>
             <div class="feature-card animate-up delay-3">
                 <div class="icon-box"><i class="fa-solid fa-lock"></i></div>
                 <h3 data-vi="Stealth Mode (Anti-Ban)" data-en="Stealth Mode (Anti-Ban)">Stealth Mode (Anti-Ban)</h3>
-                <p class="text-muted" data-vi="Mô phỏng hành vi di chuột, click và thời gian chờ của người thật, giảm thiểu rủi ro bị phát hiện và cấm." data-en="Simulates human mouse movements, clicks, and delays, minimizing detection and ban risk.">Mô phỏng hành vi di chuột, click và thời gian chờ của người thật, giảm thiểu rủi ro bị phát hiện và cấm.</p>
+                <p class="text-muted"
+                    data-vi="Mô phỏng hành vi di chuột, click và thời gian chờ của người thật, giảm thiểu rủi ro bị phát hiện và cấm."
+                    data-en="Simulates human mouse movements, clicks, and delays, minimizing detection and ban risk.">Mô
+                    phỏng hành vi di chuột, click và thời gian chờ của người thật, giảm thiểu rủi ro bị phát hiện và
+                    cấm.</p>
             </div>
         </div>
     </section>
@@ -565,9 +1037,8 @@
         <div class="container">
             <div class="section-title">
                 <h2 data-vi="Bill Thanh Toán Của Khách" data-en="Customer Payment Bills">Bill Thanh Toán Của Khách</h2>
-                <p class="text-muted"
-                   data-vi="Ảnh bill thanh toán thật từ khách hàng. Nhấn để xem ảnh lớn."
-                   data-en="Real payment proof from customers. Click to view full image.">
+                <p class="text-muted" data-vi="Ảnh bill thanh toán thật từ khách hàng. Nhấn để xem ảnh lớn."
+                    data-en="Real payment proof from customers. Click to view full image.">
                     Ảnh bill thanh toán thật từ khách hàng. Nhấn để xem ảnh lớn.
                 </p>
             </div>
@@ -584,18 +1055,25 @@
     <section id="pricing" class="container" style="padding-bottom: 100px;">
         <div class="section-title text-center">
             <h2 data-vi="Đầu Tư Vào Thời Gian Của Bạn" data-en="Invest In Your Time">Đầu Tư Vào Thời Gian Của Bạn</h2>
-            <p class="text-muted" data-vi="Key kích hoạt vĩnh viễn." data-en="Lifetime activation key.">Key kích hoạt vĩnh viễn.</p>
+            <p class="text-muted" data-vi="Key kích hoạt vĩnh viễn." data-en="Lifetime activation key.">Key kích hoạt
+                vĩnh viễn.</p>
         </div>
 
         <div class="pricing-grid">
             <div class="price-card animate-up delay-1">
                 <h3 data-vi="Key Solo" data-en="Solo Key">Key Solo</h3>
                 <div class="price-val" data-vi="200k" data-en="$15">200k</div>
-                <span class="price-sub" data-vi="Tối ưu cho cá nhân/1 máy tính – thanh toán 1 lần (VNĐ)" data-en="Optimized for personal/1 PC use – one-time payment (USD)">Tối ưu cho cá nhân/1 máy tính – thanh toán 1 lần (VNĐ)</span>
+                <span class="price-sub" data-vi="Tối ưu cho cá nhân/1 máy tính – thanh toán 1 lần (VNĐ)"
+                    data-en="Optimized for personal/1 PC use – one-time payment (USD)">Tối ưu cho cá nhân/1 máy tính –
+                    thanh toán 1 lần (VNĐ)</span>
                 <ul class="check-list">
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="1 key sử dụng được cho 1 account cùng lúc" data-en="1 key usable for 1 account simultaneously">1 key sử dụng được cho 1 account cùng lúc</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Tự động nâng tường theo ưu tiên" data-en="Auto wall upgrade prioritization">Tự động nâng tường theo ưu tiên</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Hỗ trợ qua Zalo/Telegram" data-en="Support via Zalo/Telegram">Hỗ trợ qua Zalo/Telegram</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="1 key sử dụng được cho 1 account cùng lúc"
+                            data-en="1 key usable for 1 account simultaneously">1 key sử dụng được cho 1 account cùng
+                            lúc</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="Tự động nâng tường theo ưu tiên"
+                            data-en="Auto wall upgrade prioritization">Tự động nâng tường theo ưu tiên</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="Hỗ trợ qua Zalo/Telegram"
+                            data-en="Support via Zalo/Telegram">Hỗ trợ qua Zalo/Telegram</span></li>
                 </ul>
                 <button class="btn btn-outline w-full" onclick="openPayment('200k')">
                     <span data-vi="Kích Hoạt Ngay" data-en="Activate Now">Kích Hoạt Ngay</span>
@@ -606,11 +1084,21 @@
                 <div class="tag-popular" data-vi="PHỔ BIẾN NHẤT" data-en="MOST POPULAR">PHỔ BIẾN NHẤT</div>
                 <h3 data-vi="Key Multi (Không giới hạn)" data-en="Multi Key (Unlimited)">Key Multi (Không giới hạn)</h3>
                 <div class="price-val" style="color: var(--primary);" data-vi="300k" data-en="$25">300k</div>
-                <span class="price-sub" data-vi="Chạy nhiều acc cùng lúc (tùy cấu hình PC) – thanh toán 1 lần (VNĐ)" data-en="Run multiple accounts simultaneously (PC dependent) – one-time payment (USD)">Chạy nhiều acc cùng lúc (tùy cấu hình PC) – một lần (VNĐ)</span>
+                <span class="price-sub" data-vi="Chạy nhiều acc cùng lúc (tùy cấu hình PC) – thanh toán 1 lần (VNĐ)"
+                    data-en="Run multiple accounts simultaneously (PC dependent) – one-time payment (USD)">Chạy nhiều
+                    acc cùng lúc (tùy cấu hình PC) – một lần (VNĐ)</span>
                 <ul class="check-list">
-                    <li><i class="fa-solid fa-check"></i> <span style="color:white; font-weight:600;" data-vi="Không giới hạn số lượng account trên 1 máy" data-en="Unlimited number of accounts on one PC">Không giới hạn số lượng account trên 1 máy</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Ưu tiên hỗ trợ 24/7 & remote setup" data-en="Priority 24/7 support & remote setup">Ưu tiên hỗ trợ 24/7 & remote setup</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Phù hợp cho dịch vụ cày thuê hoặc dân cày chuyên nghiệp" data-en="Suitable for boosting service or pro farmers">Phù hợp cho dịch vụ cày thuê hoặc dân cày chuyên nghiệp</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span style="color:white; font-weight:600;"
+                            data-vi="Không giới hạn số lượng account trên 1 máy"
+                            data-en="Unlimited number of accounts on one PC">Không giới hạn số lượng account trên 1
+                            máy</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="Ưu tiên hỗ trợ 24/7 & remote setup"
+                            data-en="Priority 24/7 support & remote setup">Ưu tiên hỗ trợ 24/7 & remote setup</span>
+                    </li>
+                    <li><i class="fa-solid fa-check"></i> <span
+                            data-vi="Phù hợp cho dịch vụ cày thuê hoặc dân cày chuyên nghiệp"
+                            data-en="Suitable for boosting service or pro farmers">Phù hợp cho dịch vụ cày thuê hoặc dân
+                            cày chuyên nghiệp</span></li>
                 </ul>
                 <button class="btn btn-primary w-full" onclick="openPayment('300k')">
                     <span data-vi="MUA KEY HOT" data-en="BUY HOT KEY">MUA KEY HOT</span>
@@ -620,11 +1108,18 @@
             <div class="price-card animate-up delay-3">
                 <h3 data-vi="Key Builder Base" data-en="Builder Base Key">Key Builder Base</h3>
                 <div class="price-val" data-vi="250k" data-en="$20">250k</div>
-                <span class="price-sub" data-vi="Gói tối ưu farm Làng Bóng Đêm – thanh toán 1 lần (VNĐ)" data-en="Optimized farming pack for Builder Base – one-time payment (USD)">Gói tối ưu farm Làng Bóng Đêm – thanh toán 1 lần (VNĐ)</span>
+                <span class="price-sub" data-vi="Gói tối ưu farm Làng Bóng Đêm – thanh toán 1 lần (VNĐ)"
+                    data-en="Optimized farming pack for Builder Base – one-time payment (USD)">Gói tối ưu farm Làng Bóng
+                    Đêm – thanh toán 1 lần (VNĐ)</span>
                 <ul class="check-list">
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Logic tấn công chuyên biệt cho Builder Base 2.0" data-en="Dedicated attack logic for Builder Base 2.0">Logic tấn công chuyên biệt cho Builder Base 2.0</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Tự động thu thập tài nguyên" data-en="Auto resource collection">Tự động thu thập tài nguyên</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-vi="Đạt mức O.T.T.O/B.O.B nhanh nhất" data-en="Fastest O.T.T.O/B.O.B achievement">Đạt mức O.T.T.O/B.O.B nhanh nhất</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span
+                            data-vi="Logic tấn công chuyên biệt cho Builder Base 2.0"
+                            data-en="Dedicated attack logic for Builder Base 2.0">Logic tấn công chuyên biệt cho Builder
+                            Base 2.0</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="Tự động thu thập tài nguyên"
+                            data-en="Auto resource collection">Tự động thu thập tài nguyên</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-vi="Đạt mức O.T.T.O/B.O.B nhanh nhất"
+                            data-en="Fastest O.T.T.O/B.O.B achievement">Đạt mức O.T.T.O/B.O.B nhanh nhất</span></li>
                 </ul>
                 <button class="btn btn-outline w-full" onclick="openPayment('250k')">
                     <span data-vi="Kích Hoạt Ngay" data-en="Activate Now">Kích Hoạt Ngay</span>
@@ -634,96 +1129,161 @@
     </section>
 
     <!-- POPUP XEM ẢNH BILL FULL -->
-    <div id="imageModal" 
-         style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85);
+    <div id="imageModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85);
          justify-content:center; align-items:center; z-index:3000; cursor: zoom-out;">
-        <img id="imageModalSrc" 
-             style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 0 25px rgba(0,0,0,0.8);">
+        <img id="imageModalSrc"
+            style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 0 25px rgba(0,0,0,0.8);">
     </div>
 
     <!-- PAYMENT MODAL -->
-    <div id="paymentModal" class="modal" style="display:none; position: fixed; inset: 0; z-index: 1000; justify-content: center; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease;">
-        <div class="modal-box" style="background: #1e1e1e; border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--radius-lg); width: 90%; max-width: 480px; position: relative; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
-            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <div id="paymentModal" class="modal"
+        style="display:none; position: fixed; inset: 0; z-index: 1000; justify-content: center; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease;">
+        <div class="modal-box"
+            style="background: #1e1e1e; border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--radius-lg); width: 90%; max-width: 480px; position: relative; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div class="modal-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <h3 data-vi="Thanh toán để mua key" data-en="Pay to get your key">Thanh toán để mua key</h3>
-                <button class="close-btn" onclick="closeModal()" style="background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close-btn" onclick="closeModal()"
+                    style="background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer;"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="pay-tabs" style="display: flex; gap: 8px; margin-bottom: 20px; background: #111; padding: 4px; border-radius: 99px;">
-                <button class="pay-tab" data-method="bank" onclick="setPaymentMethod('bank')" style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fa-solid fa-building-columns"></i> <span data-vi="Ngân hàng" data-en="Bank Transfer">Ngân hàng</span></button>
-                <button class="pay-tab" data-method="paypal" onclick="setPaymentMethod('paypal')" style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fa-brands fa-paypal"></i> <span data-vi="PayPal" data-en="PayPal">PayPal</span></button>
-                <button class="pay-tab" data-method="crypto" onclick="setPaymentMethod('crypto')" style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fa-solid fa-coins"></i> <span data-vi="Crypto" data-en="Crypto">Crypto</span></button>
+            <div class="pay-tabs"
+                style="display: flex; gap: 8px; margin-bottom: 20px; background: #111; padding: 4px; border-radius: 99px;">
+                <button class="pay-tab" data-method="bank" onclick="setPaymentMethod('bank')"
+                    style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i
+                        class="fa-solid fa-building-columns"></i> <span data-vi="Ngân hàng" data-en="Bank Transfer">Ngân
+                        hàng</span></button>
+                <button class="pay-tab" data-method="paypal" onclick="setPaymentMethod('paypal')"
+                    style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i
+                        class="fa-brands fa-paypal"></i> <span data-vi="PayPal" data-en="PayPal">PayPal</span></button>
+                <button class="pay-tab" data-method="crypto" onclick="setPaymentMethod('crypto')"
+                    style="flex: 1; padding: 10px; border-radius: 99px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><i
+                        class="fa-solid fa-coins"></i> <span data-vi="Crypto" data-en="Crypto">Crypto</span></button>
             </div>
-            
+
             <div id="method-bank" class="method-panel">
-                <div class="qr-area" style="background: white; padding: 20px; border-radius: 16px; margin: 10px 0 20px; text-align: center;">
-                    <img id="vietqr_img" src="" alt="QR Code" style="width: 100%; max-width: 220px; display: block; margin: 0 auto;">
-                    <p id="accountNameDisplay" style="color: #333; font-weight: 800; margin-top: 10px; font-size: 1.1rem;"></p>
-                    <p style="color:#666; font-size:0.85rem; margin-top:4px;" data-vi="Quét mã QR bằng app ngân hàng để thanh toán nhanh." data-en="Scan this VietQR with your banking app for quick payment.">Quét mã QR bằng app ngân hàng để thanh toán nhanh.</p>
+                <div class="qr-area"
+                    style="background: white; padding: 20px; border-radius: 16px; margin: 10px 0 20px; text-align: center;">
+                    <img id="vietqr_img" src="" alt="QR Code"
+                        style="width: 100%; max-width: 220px; display: block; margin: 0 auto;">
+                    <p id="accountNameDisplay"
+                        style="color: #333; font-weight: 800; margin-top: 10px; font-size: 1.1rem;"></p>
+                    <p style="color:#666; font-size:0.85rem; margin-top:4px;"
+                        data-vi="Quét mã QR bằng app ngân hàng để thanh toán nhanh."
+                        data-en="Scan this VietQR with your banking app for quick payment.">Quét mã QR bằng app ngân
+                        hàng để thanh toán nhanh.</p>
                 </div>
             </div>
 
             <div id="method-paypal" class="method-panel" style="display:none;">
-                <div style="background:var(--bg-panel); border-radius:12px; padding:16px; margin:16px 0; border:1px solid var(--glass-border);">
-                    <p class="text-muted mb-2" style="font-size: 0.9rem;" data-vi="Thanh toán qua PayPal đến email:" data-en="Pay via PayPal to this email:">Thanh toán qua PayPal đến email:</p>
-                    <div class="copy-box" style="background: #2d2d2d; padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <span id="paypalEmailDisplay" class="copy-val" style="font-family: monospace; font-size: 0.9rem; word-break: break-all;"></span>
-                        <button class="copy-btn" onclick="copyText('paypalEmailDisplay')" style="color: var(--primary); background: none; border: none; cursor: pointer; padding: 4px; font-size: 1.1rem;"><i class="fa-regular fa-copy"></i></button>
+                <div
+                    style="background:var(--bg-panel); border-radius:12px; padding:16px; margin:16px 0; border:1px solid var(--glass-border);">
+                    <p class="text-muted mb-2" style="font-size: 0.9rem;" data-vi="Thanh toán qua PayPal đến email:"
+                        data-en="Pay via PayPal to this email:">Thanh toán qua PayPal đến email:</p>
+                    <div class="copy-box"
+                        style="background: #2d2d2d; padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span id="paypalEmailDisplay" class="copy-val"
+                            style="font-family: monospace; font-size: 0.9rem; word-break: break-all;"></span>
+                        <button class="copy-btn" onclick="copyText('paypalEmailDisplay')"
+                            style="color: var(--primary); background: none; border: none; cursor: pointer; padding: 4px; font-size: 1.1rem;"><i
+                                class="fa-regular fa-copy"></i></button>
                     </div>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;" data-vi='Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".' data-en='Send as "Friends & Family". Leave the note empty or write "gift".'>Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".</p>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;"
+                        data-vi='Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".'
+                        data-en='Send as "Friends & Family". Leave the note empty or write "gift".'>Ghi chú khi chuyển:
+                        có thể để trống hoặc ghi "Tặng quà".</p>
                 </div>
             </div>
 
             <div id="method-crypto" class="method-panel" style="display:none;">
-                <div style="background:var(--bg-panel); border-radius:12px; padding:16px; margin:16px 0; border:1px solid var(--glass-border);">
-                    <p class="text-muted mb-2" style="font-size: 0.9rem;" data-vi="Thanh toán bằng USDT tới địa chỉ ví:" data-en="Pay with USDT to this wallet:">Thanh toán bằng USDT tới địa chỉ ví:</p>
-                    <div class="copy-box" style="background: #2d2d2d; padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <span id="walletAddressDisplay" class="copy-val" style="font-family: monospace; font-size: 0.85rem; word-break: break-all;"></span>
-                        <button class="copy-btn" onclick="copyText('walletAddressDisplay')" style="color: var(--primary); background: none; border: none; cursor: pointer; padding: 4px; font-size: 1.1rem;"><i class="fa-regular fa-copy"></i></button>
+                <div
+                    style="background:var(--bg-panel); border-radius:12px; padding:16px; margin:16px 0; border:1px solid var(--glass-border);">
+                    <p class="text-muted mb-2" style="font-size: 0.9rem;" data-vi="Thanh toán bằng USDT tới địa chỉ ví:"
+                        data-en="Pay with USDT to this wallet:">Thanh toán bằng USDT tới địa chỉ ví:</p>
+                    <div class="copy-box"
+                        style="background: #2d2d2d; padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span id="walletAddressDisplay" class="copy-val"
+                            style="font-family: monospace; font-size: 0.85rem; word-break: break-all;"></span>
+                        <button class="copy-btn" onclick="copyText('walletAddressDisplay')"
+                            style="color: var(--primary); background: none; border: none; cursor: pointer; padding: 4px; font-size: 1.1rem;"><i
+                                class="fa-regular fa-copy"></i></button>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;">
-                        <strong>Network: </strong><span id="cryptoNetworkDisplay" style="color: var(--accent);">TRC20</span>
-                        <span data-vi=" – Gửi đúng network, đúng số USDT theo gói." data-en=" – Use correct network and amount based on your plan."> – Gửi đúng network, đúng số USDT theo gói.</span>
+                        <strong>Network: </strong><span id="cryptoNetworkDisplay"
+                            style="color: var(--accent);">TRC20</span>
+                        <span data-vi=" – Gửi đúng network, đúng số USDT theo gói."
+                            data-en=" – Use correct network and amount based on your plan."> – Gửi đúng network, đúng số
+                            USDT theo gói.</span>
                     </p>
                 </div>
             </div>
 
             <div id="paymentDetails" style="margin-top: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.95rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.95rem;">
                     <div class="text-muted" data-vi="Số tiền" data-en="Amount">Số tiền</div>
                     <strong id="amountDisplay" style="font-size: 1.2rem;">0 VNĐ</strong>
                 </div>
 
-                <div id="contentRow" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.95rem;">
+                <div id="contentRow"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.95rem;">
                     <div class="text-muted" data-vi="Nội dung" data-en="Transfer note">Nội dung</div>
-                    <div class="copy-box" style="margin-bottom: 0; padding: 6px 12px; border: 1px solid var(--primary-glow); background: #111;">
-                        <strong id="contentDisplay" style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 1.1rem;">MUA BOT</strong>
-                        <button class="copy-btn" style="margin-left: 10px;" onclick="copyContent()"><i class="fa-regular fa-copy"></i></button>
+                    <div class="copy-box"
+                        style="margin-bottom: 0; padding: 6px 12px; border: 1px solid var(--primary-glow); background: #111;">
+                        <strong id="contentDisplay"
+                            style="color: var(--primary); font-weight: 700; font-family: monospace; font-size: 1.1rem;">MUA
+                            BOT</strong>
+                        <button class="copy-btn" style="margin-left: 10px;" onclick="copyContent()"><i
+                                class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div style="margin-top: 24px; text-align: center; border-top: 1px solid var(--glass-border); padding-top: 20px;">
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;" data-vi="Đã thanh toán xong? Hãy chụp bill và gửi cho Admin để nhận key:" data-en="Finished payment? Send the bill to Admin to receive your key:">Đã thanh toán xong? Hãy chụp bill và gửi cho Admin để nhận key:</p>
-                <div class="social-links" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
-                    <a href="#" id="zaloLink" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem; background: #0068ff;"><i class="fa-solid fa-comments"></i> Zalo</a>
-                    <a href="#" id="teleLink" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem; background: #0088cc;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-                    <a href="#" id="igLink" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem; background: #E1306C;"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <div
+                style="margin-top: 24px; text-align: center; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;"
+                    data-vi="Đã thanh toán xong? Hãy chụp bill và gửi cho Admin để nhận key:"
+                    data-en="Finished payment? Send the bill to Admin to receive your key:">Đã thanh toán xong? Hãy chụp
+                    bill và gửi cho Admin để nhận key:</p>
+                <div class="social-links"
+                    style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="#" id="zaloLink" class="btn btn-primary"
+                        style="padding: 8px 20px; font-size: 0.9rem; background: #0068ff;"><i
+                            class="fa-solid fa-comments"></i> Zalo</a>
+                    <a href="#" id="teleLink" class="btn btn-primary"
+                        style="padding: 8px 20px; font-size: 0.9rem; background: #0088cc;"><i
+                            class="fa-brands fa-telegram"></i> Telegram</a>
+                    <a href="#" id="igLink" class="btn btn-primary"
+                        style="padding: 8px 20px; font-size: 0.9rem; background: #E1306C;"><i
+                            class="fa-brands fa-instagram"></i> Instagram</a>
                 </div>
-                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:12px; font-style: italic;" data-vi="Admin sẽ kiểm tra giao dịch và gửi key kích hoạt + hướng dẫn cài đặt trong thời gian sớm nhất." data-en="Admin will verify your payment and send the activation key + setup guide as soon as possible.">Admin sẽ kiểm tra giao dịch và gửi key kích hoạt + hướng dẫn cài đặt trong thời gian sớm nhất.</p>
+                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:12px; font-style: italic;"
+                    data-vi="Admin sẽ kiểm tra giao dịch và gửi key kích hoạt + hướng dẫn cài đặt trong thời gian sớm nhất."
+                    data-en="Admin will verify your payment and send the activation key + setup guide as soon as possible.">
+                    Admin sẽ kiểm tra giao dịch và gửi key kích hoạt + hướng dẫn cài đặt trong thời gian sớm nhất.</p>
             </div>
         </div>
     </div>
-    
-    <div id="toast" style="visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">Thông báo</div>
 
-    <footer style="border-top: 1px solid var(--glass-border); padding: 40px 0; background: rgba(5, 5, 16, 0.95); margin-top: 60px; width: 100%; font-size: 0.9rem;">
+    <div id="toast"
+        style="visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
+        Thông báo</div>
+
+    <footer
+        style="border-top: 1px solid var(--glass-border); padding: 40px 0; background: rgba(5, 5, 16, 0.95); margin-top: 60px; width: 100%; font-size: 0.9rem;">
         <div class="container flex-between" style="flex-wrap: wrap; gap: 20px;">
             <div>
-                <span class="logo" style="font-size: 1rem;">CLASH BOT X</span> <span class="text-muted">© 2025. All rights reserved.</span>
+                <span class="logo" style="font-size: 1rem;">CLASH BOT X</span> <span class="text-muted">© 2025. All
+                    rights reserved.</span>
             </div>
             <div style="max-width: 500px; text-align: right;">
-                <span class="text-muted" style="font-size: 0.8rem; display: block;" data-vi="Lưu ý: Đây là công cụ hỗ trợ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có thể vi phạm điều khoản dịch vụ của game. Bạn hoàn toàn tự chịu trách nhiệm với tài khoản của mình." data-en="Note: This is a third-party tool, not affiliated with Supercell or Clash of Clans. Using bots may violate TOS. You are fully responsible for your account.">Lưu ý: Đây là công cụ hỗ trợ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có thể vi phạm điều khoản dịch vụ của game. Bạn hoàn toàn tự chịu trách nhiệm với tài khoản của mình.</span>
+                <span class="text-muted" style="font-size: 0.8rem; display: block;"
+                    data-vi="Lưu ý: Đây là công cụ hỗ trợ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có thể vi phạm điều khoản dịch vụ của game. Bạn hoàn toàn tự chịu trách nhiệm với tài khoản của mình."
+                    data-en="Note: This is a third-party tool, not affiliated with Supercell or Clash of Clans. Using bots may violate TOS. You are fully responsible for your account.">Lưu
+                    ý: Đây là công cụ hỗ trợ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có
+                    thể vi phạm điều khoản dịch vụ của game. Bạn hoàn toàn tự chịu trách nhiệm với tài khoản của
+                    mình.</span>
             </div>
         </div>
     </footer>
@@ -826,12 +1386,12 @@
         // Initialize Data
         document.getElementById('zaloLink').href = CONFIG.zalo;
         document.getElementById('teleLink').href = CONFIG.tele;
-        document.getElementById('igLink').href   = CONFIG.ig;
-        
+        document.getElementById('igLink').href = CONFIG.ig;
+
         document.getElementById('zaloLinkFixed').href = CONFIG.zalo;
         document.getElementById('teleLinkFixed').href = CONFIG.tele;
         document.getElementById('igLinkFixed').href = CONFIG.ig;
-        
+
         document.getElementById('accountNameDisplay').innerText = CONFIG.accountName;
         document.getElementById('paypalEmailDisplay').innerText = CONFIG.paypalEmail;
         document.getElementById('walletAddressDisplay').innerText = CONFIG.cryptoAddress;
@@ -860,11 +1420,11 @@
         function setPaymentMethod(method) {
             document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
             const targetTab = document.querySelector(`.pay-tab[data-method="${method}"]`);
-            if(targetTab) targetTab.classList.add('active');
+            if (targetTab) targetTab.classList.add('active');
 
             document.querySelectorAll('.method-panel').forEach(p => p.style.display = 'none');
             const targetPanel = document.getElementById('method-' + method);
-            if(targetPanel) targetPanel.style.display = 'block';
+            if (targetPanel) targetPanel.style.display = 'block';
 
             if (contentRow) {
                 if (method === 'bank') {
@@ -905,8 +1465,8 @@
             setTimeout(() => {
                 modal.classList.add('show');
                 trapFocus(modal);
-            }, 10); 
-            
+            }, 10);
+
             const defaultMethod = (currentLang === 'vi') ? 'bank' : 'paypal';
             setPaymentMethod(defaultMethod);
         }
@@ -923,17 +1483,17 @@
             const text = document.getElementById('contentDisplay').innerText;
             navigator.clipboard.writeText(text).then(() => {
                 showToast(currentLang === 'vi' ? 'Đã copy nội dung' : 'Copied note');
-            }).catch(() => {});
+            }).catch(() => { });
         }
 
         function copyText(elementId) {
             const text = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(text).then(() => {
                 showToast(currentLang === 'vi' ? 'Đã copy' : 'Copied');
-            }).catch(() => {});
+            }).catch(() => { });
         }
 
-        window.addEventListener('click', function(e) {
+        window.addEventListener('click', function (e) {
             if (e.target == modal) closeModal();
         });
 
@@ -947,7 +1507,7 @@
 
             const langBtn = document.getElementById('langToggleBtn');
             if (langBtn) langBtn.textContent = lang === 'vi' ? 'VN / EN' : 'EN / VN';
-            
+
             const bankTab = document.querySelector('.pay-tab[data-method="bank"]');
             const bankPanel = document.getElementById('method-bank');
 
@@ -955,9 +1515,9 @@
                 if (lang === 'en') {
                     bankTab.style.display = 'none';
                     bankPanel.style.display = 'none';
-                    
+
                     if (modal.classList.contains('show') && bankTab.classList.contains('active')) {
-                         setPaymentMethod('paypal');
+                        setPaymentMethod('paypal');
                     }
                 } else {
                     bankTab.style.display = 'flex';
@@ -986,7 +1546,7 @@
             if (focusable.length === 0) return;
             const first = focusable[0];
             const last = focusable[focusable.length - 1];
-            focusHandler = function(e) {
+            focusHandler = function (e) {
                 if (e.key === 'Tab') {
                     if (e.shiftKey && document.activeElement === first) {
                         e.preventDefault(); last.focus();
@@ -998,7 +1558,7 @@
                 }
             };
             document.addEventListener('keydown', focusHandler);
-            if(first) first.focus();
+            if (first) first.focus();
         }
         function releaseFocusTrap() {
             if (focusHandler) document.removeEventListener('keydown', focusHandler);
@@ -1018,4 +1578,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -2168,136 +2168,177 @@
   </div>
 
   <!-- Payment Modal -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Payment modal">
-      <div class="modal-head">
-        <h3 data-vi="Thanh toán để mua key" data-en="Pay to get your key">Thanh toán để mua key</h3>
-        <button class="close" onclick="closeModal()" aria-label="Close">
-          <i class="fa-solid fa-xmark"></i>
+<div id="paymentModal" class="modal">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Payment modal">
+    <div class="modal-head">
+      <h3 data-vi="Thanh toán để mua key" data-en="Pay to get your key">Thanh toán để mua key</h3>
+      <button class="close" onclick="closeModal()" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="tabs">
+        <button class="tab" data-method="bank" onclick="setPaymentMethod('bank')">
+          <i class="fa-solid fa-building-columns"></i>
+          <span data-vi="Ngân hàng" data-en="Bank Transfer">Ngân hàng</span>
+        </button>
+        <button class="tab" data-method="paypal" onclick="setPaymentMethod('paypal')">
+          <i class="fa-brands fa-paypal"></i>
+          <span data-vi="PayPal" data-en="PayPal">PayPal</span>
+        </button>
+        <button class="tab" data-method="crypto" onclick="setPaymentMethod('crypto')">
+          <i class="fa-solid fa-coins"></i>
+          <span data-vi="Crypto" data-en="Crypto">Crypto</span>
+        </button>
+        <button class="tab" data-method="visa" onclick="setPaymentMethod('visa')" data-lang-show="en">
+          <i class="fa-brands fa-cc-visa"></i>
+          <span data-vi="Visa Direct" data-en="Visa Direct">Visa Direct</span>
         </button>
       </div>
 
-      <div class="modal-body">
-        <div class="tabs">
-          <button class="tab" data-method="bank" onclick="setPaymentMethod('bank')">
-            <i class="fa-solid fa-building-columns"></i>
-            <span data-vi="Ngân hàng" data-en="Bank Transfer">Ngân hàng</span>
-          </button>
-          <button class="tab" data-method="paypal" onclick="setPaymentMethod('paypal')">
-            <i class="fa-brands fa-paypal"></i>
-            <span data-vi="PayPal" data-en="PayPal">PayPal</span>
-          </button>
-          <button class="tab" data-method="crypto" onclick="setPaymentMethod('crypto')">
-            <i class="fa-solid fa-coins"></i>
-            <span data-vi="Crypto" data-en="Crypto">Crypto</span>
-          </button>
-        </div>
-
-        <div id="method-bank" class="method-panel">
-          <div class="qr">
-            <img id="vietqr_img" src="" alt="QR Code" style="width:100%; max-width:240px; display:block; margin:0 auto;">
-            <p id="accountNameDisplay" style="margin-top:10px; font-weight:1000; font-size:1.05rem;"></p>
-            <p class="muted" style="margin-top:6px; font-weight:900; color:#3b3b46;"
-              data-vi="Quét VietQR bằng app ngân hàng để thanh toán nhanh."
-              data-en="Scan VietQR with your banking app for quick payment.">
-              Quét VietQR bằng app ngân hàng để thanh toán nhanh.
-            </p>
-          </div>
-        </div>
-
-        <div id="method-paypal" class="method-panel" style="display:none;">
-          <div class="panel">
-            <p class="muted" style="font-weight:1000; color:#3b3b46;"
-              data-vi="Thanh toán qua PayPal đến email:"
-              data-en="Pay via PayPal to this email:">
-              Thanh toán qua PayPal đến email:
-            </p>
-            <div class="copybox">
-              <span id="paypalEmailDisplay" class="copyval"></span>
-              <button class="copybtn" onclick="copyText('paypalEmailDisplay')" aria-label="Copy PayPal">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-            <p class="muted" style="margin-top:10px; font-weight:900; color:#3b3b46;"
-              data-vi='Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".'
-              data-en='Send as "Friends & Family". Leave the note empty or write "gift".'>
-              Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".
-            </p>
-          </div>
-        </div>
-
-        <div id="method-crypto" class="method-panel" style="display:none;">
-          <div class="panel">
-            <p class="muted" style="font-weight:1000; color:#3b3b46;"
-              data-vi="Thanh toán bằng USDT tới địa chỉ ví:"
-              data-en="Pay with USDT to this wallet:">
-              Thanh toán bằng USDT tới địa chỉ ví:
-            </p>
-            <div class="copybox">
-              <span id="walletAddressDisplay" class="copyval" style="font-size:.84rem;"></span>
-              <button class="copybtn" onclick="copyText('walletAddressDisplay')" aria-label="Copy Wallet">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-            <p style="margin-top:10px; font-weight:1000;">
-              <strong>Network:</strong>
-              <span id="cryptoNetworkDisplay" style="margin-left:6px; padding:3px 8px; border-radius:12px; border:var(--stroke); box-shadow:var(--shadow-sm); background:var(--lemon);">
-                TRC20
-              </span>
-              <span class="muted" style="font-weight:900;"
-                data-vi=" – Gửi đúng network, đúng số USDT theo gói."
-                data-en=" – Use correct network and amount based on your plan.">
-                – Gửi đúng network, đúng số USDT theo gói.
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div class="rows">
-          <div class="row">
-            <div class="muted" style="font-weight:1000;" data-vi="Số tiền" data-en="Amount">Số tiền</div>
-            <div id="amountDisplay" class="amt">0 VNĐ</div>
-          </div>
-
-          <div id="contentRow" class="row">
-            <div class="muted" style="font-weight:1000;" data-vi="Nội dung" data-en="Transfer note">Nội dung</div>
-            <div class="copybox" style="max-width:320px;">
-              <span id="contentDisplay" class="copyval" style="font-size:1rem;">MUA BOT</span>
-              <button class="copybtn" onclick="copyContent()" aria-label="Copy note">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="divider">
-          <p class="muted" style="font-weight:1000; color:#3b3b46;"
-            data-vi="Đã thanh toán xong? Chụp bill và gửi Admin để nhận key:"
-            data-en="Finished payment? Send the bill to Admin to receive your key:">
-            Đã thanh toán xong? Chụp bill và gửi Admin để nhận key:
-          </p>
-
-          <div style="margin-top:12px;" class="pillrow">
-            <a href="#" id="zaloLink" class="btn magnet" style="background:#0068ff; color:#fff;">
-              <i class="fa-solid fa-comments"></i> Zalo
-            </a>
-            <a href="#" id="teleLink" class="btn magnet" style="background:#0088cc; color:#fff;">
-              <i class="fa-brands fa-telegram"></i> Telegram
-            </a>
-            <a href="#" id="igLink" class="btn magnet" style="background:#E1306C; color:#fff;">
-              <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-          </div>
-
-          <p class="muted" style="margin-top:10px; font-weight:900;"
-            data-vi="Admin sẽ kiểm tra giao dịch và gửi key + hướng dẫn cài đặt sớm nhất."
-            data-en="Admin will verify and send the activation key + setup guide ASAP.">
-            Admin sẽ kiểm tra giao dịch và gửi key + hướng dẫn cài đặt sớm nhất.
+      <div id="method-bank" class="method-panel">
+        <div class="qr">
+          <img id="vietqr_img" src="" alt="QR Code" style="width:100%; max-width:240px; display:block; margin:0 auto;">
+          <p id="accountNameDisplay" style="margin-top:10px; font-weight:1000; font-size:1.05rem;"></p>
+          <p class="muted" style="margin-top:6px; font-weight:900; color:#3b3b46;"
+            data-vi="Quét VietQR bằng app ngân hàng để thanh toán nhanh."
+            data-en="Scan VietQR with your banking app for quick payment.">
+            Quét VietQR bằng app ngân hàng để thanh toán nhanh.
           </p>
         </div>
       </div>
+
+      <div id="method-paypal" class="method-panel" style="display:none;">
+        <div class="panel">
+          <p class="muted" style="font-weight:1000; color:#3b3b46;"
+            data-vi="Thanh toán qua PayPal đến email:"
+            data-en="Pay via PayPal to this email:">
+            Thanh toán qua PayPal đến email:
+          </p>
+          <div class="copybox">
+            <span id="paypalEmailDisplay" class="copyval"></span>
+            <button class="copybtn" onclick="copyText('paypalEmailDisplay')" aria-label="Copy PayPal">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+          <p class="muted" style="margin-top:10px; font-weight:900; color:#3b3b46;"
+            data-vi='Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".'
+            data-en='Send as "Friends & Family". Leave the note empty or write "gift".'>
+            Ghi chú khi chuyển: có thể để trống hoặc ghi "Tặng quà".
+          </p>
+        </div>
+      </div>
+
+      <div id="method-crypto" class="method-panel" style="display:none;">
+        <div class="panel">
+          <p class="muted" style="font-weight:1000; color:#3b3b46;"
+            data-vi="Thanh toán bằng USDT tới địa chỉ ví:"
+            data-en="Pay with USDT to this wallet:">
+            Thanh toán bằng USDT tới địa chỉ ví:
+          </p>
+          <div class="copybox">
+            <span id="walletAddressDisplay" class="copyval" style="font-size:.84rem;"></span>
+            <button class="copybtn" onclick="copyText('walletAddressDisplay')" aria-label="Copy Wallet">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+          <p style="margin-top:10px; font-weight:1000;">
+            <strong>Network:</strong>
+            <span id="cryptoNetworkDisplay" style="margin-left:6px; padding:3px 8px; border-radius:12px; border:var(--stroke); box-shadow:var(--shadow-sm); background:var(--lemon);">
+              TRC20
+            </span>
+            <span class="muted" style="font-weight:900;"
+              data-vi=" – Gửi đúng network, đúng số USDT theo gói."
+              data-en=" – Use correct network and amount based on your plan.">
+              – Gửi đúng network, đúng số USDT theo gói.
+            </span>
+          </p>
+        </div>
+      </div>
+
+<div id="method-visa" class="method-panel" style="display:none;" data-lang-show="en">
+    <div class="panel">
+        <p class="muted" style="font-weight:1000; color:#3b3b46;" data-en="Pay via Visa Direct to this card:">
+            Pay via Visa Direct to this card:
+        </p>
+        
+        <div class="copybox">
+            <span id="visaCardNumberDisplay" class="copyval">4026 4900 2016 9202</span>
+            <button class="copybtn" onclick="copyText('visaCardNumberDisplay')" aria-label="Copy Card Number">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+        </div>
+        
+        <div style="margin-top: 15px;">
+            <p class="muted" style="font-weight:1000; color:#3b3b46; margin-bottom: 5px;" data-en="Cardholder Name:">
+                Cardholder Name:
+            </p>
+            <div class="copybox" style="max-width: none;">
+                <span id="visaCardholderName" class="copyval">NGUYEN TUAN ANH</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 15px;">
+            <p class="muted" style="font-weight:1000; color:#3b3b46; margin-bottom: 5px;" data-en="Issuing Bank: VIET NAM">
+                Issuing Bank: VIET NAM
+            </p>
+            <div class="copybox" style="max-width: none;">
+                <span id="visaIssuingBank" class="copyval">VietinBank (Vietnam Joint Stock Commercial Bank for Industry and Trade)</span>
+            </div>
+        </div>
+
+        <p class="muted" style="margin-top:15px; font-weight:900; color:#3b3b46;"
+            data-en="Send the exact amount shown below.">
+            Send the exact amount shown below.
+        </p>
+    </div>
+</div>
+      <div class="rows">
+        <div class="row">
+          <div class="muted" style="font-weight:1000;" data-vi="Số tiền" data-en="Amount">Số tiền</div>
+          <div id="amountDisplay" class="amt">0 VNĐ</div>
+        </div>
+
+        <div id="contentRow" class="row">
+          <div class="muted" style="font-weight:1000;" data-vi="Nội dung" data-en="Transfer note">Nội dung</div>
+          <div class="copybox" style="max-width:320px;">
+            <span id="contentDisplay" class="copyval" style="font-size:1rem;">MUA BOT</span>
+            <button class="copybtn" onclick="copyContent()" aria-label="Copy note">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">
+        <p class="muted" style="font-weight:1000; color:#3b3b46;"
+          data-vi="Đã thanh toán xong? Chụp bill và gửi Admin để nhận key:"
+          data-en="Finished payment? Send the bill to Admin to receive your key:">
+          Đã thanh toán xong? Chụp bill và gửi Admin để nhận key:
+        </p>
+
+        <div style="margin-top:12px;" class="pillrow">
+          <a href="#" id="zaloLink" class="btn magnet" style="background:#0068ff; color:#fff;">
+            <i class="fa-solid fa-comments"></i> Zalo
+          </a>
+          <a href="#" id="teleLink" class="btn magnet" style="background:#0088cc; color:#fff;">
+            <i class="fa-brands fa-telegram"></i> Telegram
+          </a>
+          <a href="#" id="igLink" class="btn magnet" style="background:#E1306C; color:#fff;">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+        </div>
+
+        <p class="muted" style="margin-top:10px; font-weight:900;"
+          data-vi="Admin sẽ kiểm tra giao dịch và gửi key + hướng dẫn cài đặt sớm nhất."
+          data-en="Admin will verify and send the activation key + setup guide ASAP.">
+          Admin sẽ kiểm tra giao dịch và gửi key + hướng dẫn cài đặt sớm nhất.
+        </p>
+      </div>
     </div>
   </div>
+</div>
 
   <div id="toast">Thông báo</div>
 
@@ -2309,10 +2350,9 @@
       </div>
       <div style="max-width: 680px; font-weight:900; color: var(--muted);">
         <span
-          data-vi="Lưu ý: Đây là công cụ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có thể vi phạm điều khoản dịch vụ. Bạn tự chịu trách nhiệm với tài khoản của mình."
-          data-en="Note: This is a third-party tool, not affiliated with Supercell or Clash of Clans. Using bots may violate TOS. You are responsible for your account.">
-          Lưu ý: Đây là công cụ bên thứ ba, không thuộc Supercell hay Clash of Clans. Việc sử dụng bot có thể vi phạm điều
-          khoản dịch vụ. Bạn tự chịu trách nhiệm với tài khoản của mình.
+          data-vi="Lưu ý: Đây là công cụ bên thứ ba, không thuộc Supercell hay Clash of Clans."
+          data-en="Note: This is a third-party tool, not affiliated with Supercell or Clash of Clans.">
+          Lưu ý: Đây là công cụ bên thứ ba, không thuộc Supercell hay Clash of Clans.
         </span>
       </div>
     </div>

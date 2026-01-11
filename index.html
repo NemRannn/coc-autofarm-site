@@ -1432,6 +1432,91 @@
       font-weight: 1000;
     }
 
+
+/* =========================================================
+      LIVE NOTIFICATIONS
+    ========================================================== */
+    .live-noti {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1600; /* Cao hơn nội dung nhưng thấp hơn Modal */
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      max-width: 300px;
+      
+      /* Style Neo-Brutalism đồng bộ với web */
+      background: var(--paper);
+      color: var(--ink);
+      border: var(--stroke);
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--r-md);
+      
+      /* Animation logic */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-120%); /* Ẩn sang trái */
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hiệu ứng nảy nhẹ */
+    }
+
+    .live-noti.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .noti-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* Tròn */
+      background: var(--lemon);
+      border: 2px solid var(--ink);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .noti-icon i {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .noti-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .noti-title {
+      font-size: 0.95rem;
+      font-weight: 1000;
+      line-height: 1.2;
+    }
+
+    .noti-title .highlight {
+      color: #0088cc; /* Màu xanh nổi bật cho tên gói */
+      margin-left: 2px;
+    }
+
+    .noti-time {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Mobile: Ẩn hoặc thu nhỏ nếu màn hình quá bé */
+    @media (max-width: 520px) {
+      .live-noti {
+        bottom: 80px; /* Đẩy lên cao hơn để tránh thanh Energy Bar */
+        left: 10px;
+        padding: 10px 12px;
+      }
+    }
     .amt {
       padding: 6px 10px;
       border-radius: 14px;
@@ -1722,6 +1807,8 @@
         transition: none !important;
       }
     }
+
+    
   </style>
 </head>
 
@@ -2373,6 +2460,23 @@
     </div>
   </div>
 
+
+  <div id="live-notification" class="live-noti">
+    <div class="noti-icon">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+    <div class="noti-content">
+      <div class="noti-title">
+        <span id="noti-name">User</span>
+        <span class="muted" style="font-weight:800; font-size: 0.9em;">purchased</span>
+        <span id="noti-item" class="highlight">Item</span>
+      </div>
+      <div class="noti-time">
+        <i class="fa-regular fa-clock"></i> <span data-vi="Vừa xong" data-en="Just now">Just now</span>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ============================================
     // CONFIG
@@ -2441,6 +2545,70 @@
       });
     }
 
+
+    // ============================================
+    // LIVE NOTIFICATIONS LOGIC
+    // ============================================
+const NOTI_DATA = {
+      names: [
+        // Tên cũ
+        'Alex', 'Tuan', 'Minh', 'Kevin', 'John', 'Huy', 'Dat', 'Sarah', 'David', 'Long', 'Hung',
+        'Duc', 'Hoang', 'Nam', 'Hieu', 'Bao', 'Khanh', 'Phuc', 'Thinh', 'Quang', 'Viet', 
+        'Cuong', 'Dung', 'Son', 'Lam', 'Hai', 'Kiet', 'Linh', 'Trang', 'Tung', 'Khoa',
+        'Michael', 'Chris', 'Robert', 'Daniel', 'Thomas', 'James', 'Ryan', 'Eric', 'Brandon', 
+        'Justin', 'Matthew', 'William', 'Brian', 'Anthony', 'Steven', 'Andrew', 'Joshua'
+      ],
+      items: ['Solo Key', 'Multi Key', 'Builder Key', 'Multi Key', 'Solo Key'] 
+    };
+
+    function initLiveNoti() {
+      const el = document.getElementById('live-notification');
+      const nameEl = document.getElementById('noti-name');
+      const itemEl = document.getElementById('noti-item');
+      
+      if (!el || !nameEl || !itemEl) return;
+
+      const randomRange = (min, max) => Math.random() * (max - min) + min;
+
+      function showNoti() {
+        // 1. Random dữ liệu
+        const name = NOTI_DATA.names[Math.floor(Math.random() * NOTI_DATA.names.length)];
+        const item = NOTI_DATA.items[Math.floor(Math.random() * NOTI_DATA.items.length)];
+        
+        // 2. Mask tên (VD: Tuan -> T***)
+        const maskedName = name.substring(0, 1) + '***';
+
+        // 3. Render
+        nameEl.innerText = maskedName;
+        itemEl.innerText = item;
+
+        // 4. Hiển thị
+        el.classList.add('show');
+
+        // 5. Ẩn sau 4s
+        setTimeout(() => {
+          el.classList.remove('show');
+          
+          // 6. Lên lịch cho lần hiển thị tiếp theo (Random 10s - 25s)
+          scheduleNext();
+        }, 4000);
+      }
+
+      function scheduleNext() {
+        const delay = randomRange(6000, 10000); // 10s đến 25s
+        setTimeout(showNoti, delay);
+      }
+
+      // Bắt đầu chạy sau 5s khi vào web
+      setTimeout(showNoti, 5000);
+    }
+
+    // Gọi hàm này trong DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // ... các hàm init cũ ...
+      initLiveNoti(); // <--- Thêm dòng này
+    });
+
     // ============================================
     // INIT LINKS + DATA
     // ============================================
@@ -2470,6 +2638,8 @@
       toastTimer = setTimeout(() => toastEl.classList.remove('show'), ms);
     }
 
+
+    
     // ============================================
     // PAYMENT MODAL
     // ============================================

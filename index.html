@@ -2077,7 +2077,7 @@
     <a href="#" id="igLinkFixed" target="_blank" class="fixed-btn" title="Hỗ Trợ Instagram">
       <i class="fa-brands fa-instagram"></i>
     </a>
-    <button onclick="openPayment('300k')" class="fixed-btn" title="Mua Key Nhanh (Hot)">
+    <button onclick="openPayment('350k')" class="fixed-btn" title="Mua Key Nhanh (Hot)">
       <i class="fa-solid fa-cart-shopping"></i>
     </button>
   </div>
@@ -2323,7 +2323,7 @@
             Bấm nút HOT KEY – modal mở ra đúng phương thức theo ngôn ngữ. Copy 1 chạm.
           </p>
           <div style="margin-top:14px;" class="stack-12">
-            <button class="btn hot wide magnet" onclick="openPayment('300k')">
+            <button class="btn hot wide magnet" onclick="openPayment('350k')">
               <span data-vi="MUA KEY HOT" data-en="BUY HOT KEY">MUA KEY HOT</span>
               <i class="fa-solid fa-cart-shopping"></i>
             </button>
@@ -2379,7 +2379,7 @@
             <li><i class="fa-solid fa-check"></i> <span data-vi="Hỗ trợ Zalo/Telegram"
                 data-en="Support via Zalo/Telegram">Hỗ trợ Zalo/Telegram</span></li>
           </ul>
-          <button class="btn wide magnet" onclick="openPayment('200k')">
+          <button class="btn wide magnet" onclick="openPayment('250k_30day')">
             <span data-vi="Kích Hoạt Ngay" data-en="Activate Now">Kích Hoạt Ngay</span>
             <i class="fa-solid fa-bolt"></i>
           </button>
@@ -2401,7 +2401,7 @@
             <li><i class="fa-solid fa-check"></i> <span data-vi="Phù hợp dịch vụ cày thuê / pro farmer"
                 data-en="Great for boosting services / pro farmers">Phù hợp dịch vụ cày thuê / pro farmer</span></li>
           </ul>
-          <button class="btn hot wide magnet" onclick="openPayment('300k')">
+          <button class="btn hot wide magnet" onclick="openPayment('350k')">
             <span data-vi="MUA KEY HOT" data-en="BUY HOT KEY">MUA KEY HOT</span>
             <i class="fa-solid fa-cart-shopping"></i>
           </button>
@@ -2885,11 +2885,12 @@
       const contentDisplay = document.getElementById('contentDisplay');
 
       currentPackage = packagePrice;
-      if (packagePrice === '200k') currentAmount = 200000;
-      if (packagePrice === '300k') currentAmount = 300000;
-      if (packagePrice === '250k') currentAmount = 250000;
+      if (packagePrice === '250k_30day') currentAmount = 250000;
+      else if (packagePrice === '350k') currentAmount = 350000;
+      else if (packagePrice === '250k') currentAmount = 250000;
 
-      const transferContent = 'MUA BOT ' + packagePrice;
+      const transferLabel = packagePrice === '250k_30day' ? '250k' : packagePrice;
+      const transferContent = 'MUA BOT ' + transferLabel;
       const qrLink = `https://img.vietqr.io/image/${CONFIG.bankId}-${CONFIG.accountNo}-compact2.png?amount=${currentAmount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(CONFIG.accountName)}`;
       qrImg.src = qrLink;
 
@@ -2897,9 +2898,9 @@
         amtDisplay.innerText = currentAmount.toLocaleString('vi-VN') + ' VNĐ';
       } else {
         let usdAmount = 0;
-        if (packagePrice === '200k') usdAmount = 18;
-        if (packagePrice === '300k') usdAmount = 25;
-        if (packagePrice === '250k') usdAmount = 20;
+        if (packagePrice === '250k_30day') usdAmount = 20;
+        else if (packagePrice === '350k') usdAmount = 30;
+        else if (packagePrice === '250k') usdAmount = 20;
         amtDisplay.innerText = '$' + usdAmount;
       }
 

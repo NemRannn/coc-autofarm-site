@@ -187,14 +187,9 @@ def handle_update(update):
             send_menu(chat_id)
 
 def main():
-    print("Bot starting (Pro Version)...")
+    print("Bot starting (Pro Version)...", flush=True)
     last_update_id = 0
-    # Clean up old updates to avoid duplication
-    resp = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset=-1")
-    data = resp.json()
-    if data.get('ok') and data['result']:
-        last_update_id = data['result'][0]['update_id']
-
+    # We'll just start polling and Telegram will send us recent unconfirmed updates.
     while True:
         try:
             resp = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset={last_update_id + 1}&timeout=30")
@@ -204,7 +199,7 @@ def main():
                     handle_update(update)
                     last_update_id = update['update_id']
         except Exception as e:
-            print(f"Loop error: {e}")
+            print(f"Loop error: {e}", flush=True)
             time.sleep(5)
 
 if __name__ == "__main__":

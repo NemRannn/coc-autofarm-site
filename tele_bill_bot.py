@@ -3,145 +3,195 @@ import requests
 import time
 import subprocess
 from datetime import datetime
+import json
 
 # ========================================================
-# CẤU HÌNH (CONFIGURATION)
-# 1. Liên hệ @BotFather trên Telegram để lấy TOKEN.
-# 2. Gửi bất kỳ ảnh nào cho Bot rồi xem ID người gửi trong Terminal.
-# 3. Điền ID đó vào ALLOWED_USER_ID để chỉ bạn mới dùng được Bot.
+# CONFIGURATION
 # ========================================================
 BOT_TOKEN = '8539073286:AAFbnsIgs64oLxyOxv8vcIrDhrvFr1ZXpU0' 
-ALLOWED_USER_ID = 6302595439  # Điền Chat ID của bạn vào đây (Số nguyên)
+ALLOWED_USER_ID = 6302595439
 
-# Cấu hình đường dẫn
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BILLS_DIR = os.path.join(BASE_DIR, 'bills')
 UPDATE_SCRIPT = os.path.join(BASE_DIR, 'update_bills.py')
+
+# Bot States
+STATE_IDLE = 'IDLE'
+STATE_AWAITING_PHOTO = 'AWAITING_PHOTO'
+STATE_CONFIRM_ADD = 'CONFIRM_ADD'
+STATE_CONFIRM_DEL = 'CONFIRM_DEL'
+
+# Global Session
+session = {
+    'state': STATE_IDLE,
+    'data': None # Stores filename or index
+}
 
 def run_command(cmd):
     try:
         result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True, cwd=BASE_DIR)
         print(f"Command success: {cmd}")
-        return result.stdout
+        return True
     except subprocess.CalledProcessError as e:
         print(f"Error running command {cmd}: {e.stderr}")
-        return None
+        return False
+
+def send_msg(chat_id, text):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    requests.post(url, data={'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'})
 
 def download_file(file_id, file_path):
-    # Lấy đường dẫn file từ Telegram
     resp = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getFile?file_id={file_id}")
     file_info = resp.json()
-    if not file_info.get('ok'):
-        return False
-    
+    if not file_info.get('ok'): return False
     file_rel_path = file_info['result']['file_path']
-    # Tải file về
     file_url = f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_rel_path}"
     file_resp = requests.get(file_url)
-    
     with open(file_path, 'wb') as f:
         f.write(file_resp.content)
     return True
 
-UPLOAD_HISTORY = []
+def get_bill_list():
+    # Scan directory for bill images
+    files = [f for f in os.listdir(BILLS_DIR) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    files.sort()
+    return files
 
 def handle_update(update):
-    global UPLOAD_HISTORY
+    global session
     if 'message' not in update: return
     msg = update['message']
+    chat_id = msg['chat']['id']
     user_id = msg['from']['id']
-    username = msg['from'].get('username', 'Unknown')
 
-    # Bảo mật: Chỉ cho phép User được định danh
-    if ALLOWED_USER_ID != 0 and user_id != ALLOWED_USER_ID:
-        print(f"Blocked message from {user_id} ({username})")
+    if user_id != ALLOWED_USER_ID:
+        print(f"Unauthorized access: {user_id}")
         return
 
-    # Lệnh văn bản
-    if 'text' in msg:
-        text = msg['text']
-        if text == '/start':
-            welcome_text = (
-                "👋 Chào mừng bạn đến với Bill Up Bot!\n\n"
-                "Tôi giúp bạn cập nhật bill thanh toán lên web nhanh chóng.\n"
-                "📸 **Cách dùng:** Bạn chỉ cần gửi ảnh bill trực tiếp cho tôi.\n"
-                "🗑️ **Xóa nhầm:** Gõ /del để xóa ảnh vừa gửi.\n"
-                "🔑 **ID của bạn:** Gõ /id để lấy Chat ID cài đặt bảo mật."
-            )
-            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text={welcome_text}")
-            return
+    text = msg.get('text', '')
 
-        if text == '/id':
-            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=ID của bạn là: {user_id}")
-            return
+    # --- BASIC COMMANDS ---
+    if text == '/start':
+        session['state'] = STATE_IDLE
+        help_text = (
+            "🚀 **Bill Management Bot**\n\n"
+            "Các lệnh khả dụng:\n"
+            "➕ /add - Để bắt đầu thêm ảnh bill mới\n"
+            "📜 /list - Xem danh sách bill hiện có trên web\n"
+            "❌ /del [số] - Xóa bill theo số thứ tự (VD: /del 5)\n"
+            "🔄 /cancel - Hủy bỏ hành động hiện tại\n"
+            "🔑 /id - Xem Chat ID của bạn"
+        )
+        send_msg(chat_id, help_text)
+        return
+
+    if text == '/id':
+        send_msg(chat_id, f"ID của bạn: `{user_id}`")
+        return
+
+    if text == '/cancel':
+        session['state'] = STATE_IDLE
+        session['data'] = None
+        send_msg(chat_id, "⏹️ Đã hủy hành động hiện tại.")
+        return
+
+    # --- STATE: IDLE ---
+    if session['state'] == STATE_IDLE:
+        if text == '/add':
+            session['state'] = STATE_AWAITING_PHOTO
+            send_msg(chat_id, "📸 Mời bạn gửi ảnh bill. Tôi sẽ chờ...")
         
-        if text == '/del':
-            if not UPLOAD_HISTORY:
-                # Tìm file mới nhất trong thư mục nếu history trống
-                files = [f for f in os.listdir(BILLS_DIR) if f.startswith('bill_')]
-                if files:
-                    files.sort()
-                    last_file = files[-1]
+        elif text == '/list':
+            files = get_bill_list()
+            if not files:
+                send_msg(chat_id, "📭 Hiện chưa có bill nào.")
+            else:
+                list_text = "📜 **Danh sách bill:**\n"
+                for i, f in enumerate(files, 1):
+                    list_text += f"{i}. `{f}`\n"
+                send_msg(chat_id, list_text)
+        
+        elif text.startswith('/del'):
+            parts = text.split()
+            if len(parts) < 2:
+                send_msg(chat_id, "💡 Vui lòng nhập số thứ tự. VD: `/del 1`")
+                return
+            try:
+                idx = int(parts[1]) - 1
+                files = get_bill_list()
+                if 0 <= idx < len(files):
+                    session['state'] = STATE_CONFIRM_DEL
+                    session['data'] = files[idx]
+                    send_msg(chat_id, f"⚠️ **Xác nhận xóa bill này?**\nTên file: `{files[idx]}`\n\nGõ /confirm để thực hiện.")
                 else:
-                    requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=❌ Không có bill nào để xóa.")
-                    return
-            else:
-                last_file = UPLOAD_HISTORY.pop()
+                    send_msg(chat_id, "❌ Số thứ tự không tồn tại trong danh sách.")
+            except ValueError:
+                send_msg(chat_id, "❌ Vui lòng nhập số hợp lệ.")
 
-            file_path = os.path.join(BILLS_DIR, last_file)
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                print(f"Deleted: {last_file}")
-                
-                # Cập nhật web
-                run_command(f"python \"{UPDATE_SCRIPT}\"")
-                run_command("git add .")
-                run_command(f"git commit -m \"Auto-delete bill from Telegram: {last_file}\"")
-                run_command("git push")
-                
-                requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=✅ Đã xóa bill mới nhất và cập nhật web!")
-            else:
-                requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=❌ File không tồn tại để xóa.")
-            return
-
-    # Nếu gửi ảnh
-    if 'photo' in msg:
-        # Lấy ảnh chất lượng tốt nhất
-        photo = msg['photo'][-1]
-        file_id = photo['file_id']
-        
-        # Tạo tên file theo thời gian
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"bill_{timestamp}.jpg"
-        file_path = os.path.join(BILLS_DIR, filename)
-        
-        # 1. Tải ảnh
-        if download_file(file_id, file_path):
-            print(f"Saved: {filename}")
-            UPLOAD_HISTORY.append(filename)
+    # --- STATE: AWAITING_PHOTO ---
+    elif session['state'] == STATE_AWAITING_PHOTO:
+        if 'photo' in msg:
+            photo = msg['photo'][-1]
+            file_id = photo['file_id']
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"bill_{timestamp}.jpg"
+            file_path = os.path.join(BILLS_DIR, filename)
             
-            # 2. Run HTML update script
+            if download_file(file_id, file_path):
+                session['state'] = STATE_CONFIRM_ADD
+                session['data'] = filename
+                send_msg(chat_id, f"📥 Đã tải ảnh xong.\nTên file: `{filename}`\n\n✅ Gõ /confirm để cập nhật lên web.")
+            else:
+                send_msg(chat_id, "❌ Lỗi khi tải ảnh. Thử lại hoặc /cancel.")
+        else:
+            send_msg(chat_id, "⚠️ Vui lòng gửi một tấm ảnh hoặc gõ /cancel.")
+
+    # --- STATE: CONFIRMS ---
+    elif text == '/confirm':
+        if session['state'] == STATE_CONFIRM_ADD:
+            filename = session['data']
+            send_msg(chat_id, "🔄 Đang cập nhật web và Git...")
+            
             run_command(f"python \"{UPDATE_SCRIPT}\"")
-            
-            # 3. Git Push (Auto deploy)
-            print("Pushing to Git...")
             run_command("git add .")
-            run_command(f"git commit -m \"Auto-add bill from Telegram: {filename}\"")
+            run_command(f"git commit -m \"Add bill via Bot: {filename}\"")
             run_command("git push")
             
-            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=✅ Đã thêm bill và cập nhật web thành công! Gõ /del để xóa nếu nhầm.")
+            send_msg(chat_id, f"🎉 **Thành công!** Bill `{filename}` đã lên web.")
+            session['state'] = STATE_IDLE
+            session['data'] = None
+
+        elif session['state'] == STATE_CONFIRM_DEL:
+            filename = session['data']
+            file_path = os.path.join(BILLS_DIR, filename)
+            
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                send_msg(chat_id, f"🗑️ Đã xóa file `{filename}`. Đang cập nhật web...")
+                
+                run_command(f"python \"{UPDATE_SCRIPT}\"")
+                run_command("git add .")
+                run_command(f"git commit -m \"Delete bill via Bot: {filename}\"")
+                run_command("git push")
+                
+                send_msg(chat_id, "✅ Đã cập nhật xong.")
+            else:
+                send_msg(chat_id, "❌ Lỗi: File không tìm thấy trên ổ đĩa.")
+            
+            session['state'] = STATE_IDLE
+            session['data'] = None
         else:
-            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=❌ Lỗi khi tải ảnh.")
+            send_msg(chat_id, "🤔 Bạn không có hành động nào chờ xác nhận.")
 
 def main():
-    if BOT_TOKEN == 'YOUR_BOT_TOKEN_HERE':
-        print("Vui lòng điền BOT_TOKEN vào file tele_bill_bot.py!")
-        return
-
-    print("Bot is running... Send photos to the Bot on Telegram.")
-    print("Tip: Send /id to the Bot to get your ID for ALLOWED_USER_ID.")
-    
+    print("Bot starting (Pro Version)...")
     last_update_id = 0
+    # Clean up old updates to avoid duplication
+    resp = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset=-1")
+    data = resp.json()
+    if data.get('ok') and data['result']:
+        last_update_id = data['result'][0]['update_id']
+
     while True:
         try:
             resp = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates?offset={last_update_id + 1}&timeout=30")

@@ -2749,12 +2749,55 @@
     // BILL IMAGES
     // ============================================
     const BILL_IMAGES = [
-      { file: 'bills/bill1.jpg', captionVi: 'Giao dịch PayPal - Friends & Family.', captionEn: 'PayPal Friends & Family transaction.', author: 'Customer #1' },
-      { file: 'bills/bill2.jpg', captionVi: 'Giao dịch PayPal - Friends & Family.', captionEn: 'PayPal Friends & Family transaction.', author: 'Customer #2' },
-      { file: 'bills/bill3.jpg', captionVi: 'Giao dịch PayPal - Friends & Family.', captionEn: 'PayPal Friends & Family transaction.', author: 'Customer #3' },
-      { file: 'bills/bill4.jpg', captionVi: 'Giao dịch PayPal - Friends & Family.', captionEn: 'PayPal Friends & Family transaction.', author: 'Customer #4' },
-      { file: 'bills/bill5.jpg', captionVi: 'Giao dịch PayPal - Friends & Family.', captionEn: 'PayPal Friends & Family transaction.', author: 'Customer #5' }
-    ];
+      {
+            'file': 'bills/6111818593872842106.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842107.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842111.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842112.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842113.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842114.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/6111818593872842119.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/bill1.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/bill2.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/bill3.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/bill4.jpg',
+            'author': 'Customer'
+      },
+      {
+            'file': 'bills/bill5.jpg',
+            'author': 'Customer'
+      }
+];
 
     function renderBills() {
       const container = document.getElementById('feedbackMarquee');
@@ -2772,15 +2815,13 @@
         img.src = bill.file;
         img.alt = 'payment-bill';
 
-        const cap = document.createElement('div');
-        cap.className = 'cap';
-        cap.setAttribute('data-vi', bill.captionVi);
-        cap.setAttribute('data-en', bill.captionEn);
-        cap.textContent = bill.captionVi;
+        card.appendChild(img);
 
         const author = document.createElement('span');
         author.className = 'author';
-        author.textContent = bill.author ? `~ ${bill.author}` : '~ Customer';
+        author.setAttribute('data-vi', 'Khách hàng');
+        author.setAttribute('data-en', 'Customer');
+        author.textContent = currentLang === 'vi' ? 'Khách hàng' : 'Customer';
 
         const note = document.createElement('div');
         note.className = 'note';
@@ -2788,8 +2829,6 @@
         note.setAttribute('data-en', '[Click to view original image]');
         note.textContent = '[Nhấn để xem ảnh gốc]';
 
-        card.appendChild(img);
-        card.appendChild(cap);
         card.appendChild(author);
         card.appendChild(note);
 

@@ -57,6 +57,20 @@ def get_bill_list():
     files.sort()
     return files
 
+def send_menu(chat_id, text_prefix=""):
+    menu_text = (
+        f"{text_prefix}\n\n" if text_prefix else ""
+    ) + (
+        "🚀 **Hệ thống Quản lý Bill**\n\n"
+        "Các lệnh khả dụng:\n"
+        "➕ /add - Thêm ảnh bill mới\n"
+        "📜 /list - Danh sách bill trên web\n"
+        "❌ /del [số] - Xóa bill (VD: /del 1)\n"
+        "🔄 /cancel - Hủy hành động\n"
+        "🔑 /id - Xem Chat ID"
+    )
+    send_msg(chat_id, menu_text)
+
 def handle_update(update):
     global session
     if 'message' not in update: return
@@ -73,16 +87,7 @@ def handle_update(update):
     # --- BASIC COMMANDS ---
     if text == '/start':
         session['state'] = STATE_IDLE
-        help_text = (
-            "🚀 **Bill Management Bot**\n\n"
-            "Các lệnh khả dụng:\n"
-            "➕ /add - Để bắt đầu thêm ảnh bill mới\n"
-            "📜 /list - Xem danh sách bill hiện có trên web\n"
-            "❌ /del [số] - Xóa bill theo số thứ tự (VD: /del 5)\n"
-            "🔄 /cancel - Hủy bỏ hành động hiện tại\n"
-            "🔑 /id - Xem Chat ID của bạn"
-        )
-        send_msg(chat_id, help_text)
+        send_menu(chat_id)
         return
 
     if text == '/id':
@@ -92,7 +97,7 @@ def handle_update(update):
     if text == '/cancel':
         session['state'] = STATE_IDLE
         session['data'] = None
-        send_msg(chat_id, "⏹️ Đã hủy hành động hiện tại.")
+        send_menu(chat_id, "⏹️ Đã hủy hành động hiện tại.")
         return
 
     # --- STATE: IDLE ---
@@ -109,12 +114,12 @@ def handle_update(update):
                 list_text = "📜 **Danh sách bill:**\n"
                 for i, f in enumerate(files, 1):
                     list_text += f"{i}. `{f}`\n"
-                send_msg(chat_id, list_text)
+                send_menu(chat_id, list_text)
         
         elif text.startswith('/del'):
             parts = text.split()
             if len(parts) < 2:
-                send_msg(chat_id, "💡 Vui lòng nhập số thứ tự. VD: `/del 1`")
+                send_msg(chat_id, "💡 Vui lòng nhập số. VD: `/del 1`")
                 return
             try:
                 idx = int(parts[1]) - 1
@@ -122,9 +127,9 @@ def handle_update(update):
                 if 0 <= idx < len(files):
                     session['state'] = STATE_CONFIRM_DEL
                     session['data'] = files[idx]
-                    send_msg(chat_id, f"⚠️ **Xác nhận xóa bill này?**\nTên file: `{files[idx]}`\n\nGõ /confirm để thực hiện.")
+                    send_msg(chat_id, f"⚠️ **Xác nhận xóa bill?**\nFile: `{files[idx]}`\n\nGõ /confirm để hoàn tất.")
                 else:
-                    send_msg(chat_id, "❌ Số thứ tự không tồn tại trong danh sách.")
+                    send_msg(chat_id, "❌ Số thứ tự không đúng.")
             except ValueError:
                 send_msg(chat_id, "❌ Vui lòng nhập số hợp lệ.")
 
@@ -140,26 +145,24 @@ def handle_update(update):
             if download_file(file_id, file_path):
                 session['state'] = STATE_CONFIRM_ADD
                 session['data'] = filename
-                send_msg(chat_id, f"📥 Đã tải ảnh xong.\nTên file: `{filename}`\n\n✅ Gõ /confirm để cập nhật lên web.")
+                send_msg(chat_id, f"📥 Đã tải ảnh: `{filename}`\n\n✅ Gõ /confirm để cập nhật.")
             else:
-                send_msg(chat_id, "❌ Lỗi khi tải ảnh. Thử lại hoặc /cancel.")
+                send_msg(chat_id, "❌ Lỗi tải ảnh. Thử lại hoặc /cancel.")
         else:
-            send_msg(chat_id, "⚠️ Vui lòng gửi một tấm ảnh hoặc gõ /cancel.")
+            send_msg(chat_id, "⚠️ Vui lòng gửi ảnh hoặc /cancel.")
 
     # --- STATE: CONFIRMS ---
     elif text == '/confirm':
         if session['state'] == STATE_CONFIRM_ADD:
             filename = session['data']
-            send_msg(chat_id, "🔄 Đang cập nhật web và Git...")
+            send_msg(chat_id, "🔄 Đang xử lý...")
             
             run_command(f"python \"{UPDATE_SCRIPT}\"")
-            run_command("git add .")
-            run_command(f"git commit -m \"Add bill via Bot: {filename}\"")
-            run_command("git push")
+            run_command("git add .; git commit -m \"Add bill via Bot\"; git push")
             
-            send_msg(chat_id, f"🎉 **Thành công!** Bill `{filename}` đã lên web.")
             session['state'] = STATE_IDLE
             session['data'] = None
+            send_menu(chat_id, f"🎉 **Thành công!** Bill `{filename}` đã lên web.")
 
         elif session['state'] == STATE_CONFIRM_DEL:
             filename = session['data']
@@ -167,21 +170,21 @@ def handle_update(update):
             
             if os.path.exists(file_path):
                 os.remove(file_path)
-                send_msg(chat_id, f"🗑️ Đã xóa file `{filename}`. Đang cập nhật web...")
+                send_msg(chat_id, f"🗑️ Đã xóa file `{filename}`. Đang đẩy lên web...")
                 
                 run_command(f"python \"{UPDATE_SCRIPT}\"")
-                run_command("git add .")
-                run_command(f"git commit -m \"Delete bill via Bot: {filename}\"")
-                run_command("git push")
+                run_command("git add .; git commit -m \"Delete bill via Bot\"; git push")
                 
-                send_msg(chat_id, "✅ Đã cập nhật xong.")
+                session['state'] = STATE_IDLE
+                session['data'] = None
+                send_menu(chat_id, "✅ Cập nhật hoàn tất.")
             else:
-                send_msg(chat_id, "❌ Lỗi: File không tìm thấy trên ổ đĩa.")
-            
-            session['state'] = STATE_IDLE
-            session['data'] = None
+                send_msg(chat_id, "❌ Không thấy file.")
+                session['state'] = STATE_IDLE
+                send_menu(chat_id)
         else:
-            send_msg(chat_id, "🤔 Bạn không có hành động nào chờ xác nhận.")
+            send_msg(chat_id, "🤔 Không có lệnh chờ xác nhận.")
+            send_menu(chat_id)
 
 def main():
     print("Bot starting (Pro Version)...")

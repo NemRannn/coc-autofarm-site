@@ -60,6 +60,17 @@ def handle_update(update):
     # Lệnh văn bản
     if 'text' in msg:
         text = msg['text']
+        if text == '/start':
+            welcome_text = (
+                "👋 Chào mừng bạn đến với Bill Up Bot!\n\n"
+                "Tôi giúp bạn cập nhật bill thanh toán lên web nhanh chóng.\n"
+                "📸 **Cách dùng:** Bạn chỉ cần gửi ảnh bill trực tiếp cho tôi.\n"
+                "🗑️ **Xóa nhầm:** Gõ /del để xóa ảnh vừa gửi.\n"
+                "🔑 **ID của bạn:** Gõ /id để lấy Chat ID cài đặt bảo mật."
+            )
+            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text={welcome_text}")
+            return
+
         if text == '/id':
             requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=ID của bạn là: {user_id}")
             return

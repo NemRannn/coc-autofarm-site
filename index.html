@@ -890,6 +890,127 @@
       box-shadow: 3px 3px 0 var(--ink);
     }
 
+    /* HERO YOUTUBE DASHBOARD - PREMIUM INDEPENDENT SECTION */
+    .hero-yt-dashboard {
+      margin-top: 20px;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      border-radius: var(--r-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+
+    .hero-yt-dashboard::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .yt-dash-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .yt-dash-avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      background: #fff;
+      padding: 2px;
+    }
+
+    .yt-dash-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .yt-dash-name {
+      font-family: "Orbitron", sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .yt-dash-verified {
+      color: #0088cc;
+      font-size: 0.9rem;
+    }
+
+    .yt-dash-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #3b3b46;
+      opacity: 0.8;
+    }
+
+    .yt-dash-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .yt-dash-stat i {
+      color: #ff0000;
+    }
+
+    .hero-subscribe-btn {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, #ff0000 0%, #b30000 100%);
+      color: #fff;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      animation: ytGlowPulse 2.5s infinite;
+    }
+
+    .hero-subscribe-btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--ink), 0 0 25px rgba(255, 0, 10, 0.4);
+      background: #ff0000;
+      animation-play-state: paused;
+    }
+
+    @keyframes ytGlowPulse {
+
+      0%,
+      100% {
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+
+      50% {
+        box-shadow: 4px 4px 0 var(--ink), 0 0 20px rgba(255, 0, 0, 0.5);
+      }
+    }
+
     /* =========================================================
       Feature grid
     ========================================================== */
@@ -2169,7 +2290,6 @@
               <span class="sticker pink" data-vi="ANTI-BAN" data-en="ANTI-BAN">ANTI-BAN</span>
               <span class="sticker alt" data-vi="MULTI-ACC" data-en="MULTI-ACC">MULTI-ACC</span>
             </div>
-
           </div>
         </div>
       </div>
@@ -2179,6 +2299,33 @@
   <!-- Demo -->
   <section id="demo" class="section">
     <div class="container">
+      <!-- Mega YouTube Dashboard Section -->
+      <div class="hero-yt-dashboard reveal" style="margin-bottom: 40px; width: 100%; max-width: 100%;">
+        <div class="yt-dash-header" style="justify-content: space-between; width: 100%; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <img src="./assets/img/Youtube_logo.png" class="yt-dash-avatar" style="width: 70px; height: 70px;"
+              alt="Channel Icon">
+            <div class="yt-dash-info">
+              <div class="yt-dash-name" style="font-size: 1.8rem; color: var(--ink);">
+                @Autotomaxcoc
+                <i class="fa-solid fa-circle-check yt-dash-verified" style="font-size: 1.2rem;"></i>
+              </div>
+              <div style="font-weight: 800; color: #555; font-size: 0.95rem;" data-vi="Kênh hướng dẫn chính thức"
+                data-en="Official Tutorial Channel">
+                Kênh hướng dẫn chính thức
+              </div>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 300px; max-width: 400px; margin-top: 10px;">
+            <a href="https://www.youtube.com/@Autotomaxcoc" target="_blank" class="hero-subscribe-btn magnet"
+              style="height: 60px; font-size: 1.2rem;">
+              <i class="fa-brands fa-youtube"></i>
+              <span data-vi="ĐĂNG KÝ KÊNH NGAY" data-en="SUBSCRIBE OUR CHANNEL">ĐĂNG KÝ KÊNH NGAY</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="title reveal">
         <h2 data-vi="Giao Diện Bot Thực Tế" data-en="Real Bot Interface Demo">Giao Diện Bot Thực Tế</h2>
         <p data-vi="Xem cách bot tự động tìm kiếm và tấn công (Streamable)."
@@ -2750,58 +2897,58 @@
     // ============================================
     const BILL_IMAGES = [
       {
-            'file': 'bills/6111818593872842106.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842106.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842107.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842107.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842111.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842111.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842112.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842112.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842113.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842113.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842114.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842114.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/6111818593872842119.jpg',
-            'author': 'Customer'
+        'file': 'bills/6111818593872842119.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill1.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill1.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill2.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill2.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill3.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill3.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill4.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill4.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill5.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill5.jpg',
+        'author': 'Customer'
       },
       {
-            'file': 'bills/bill_20260221_195432.jpg',
-            'author': 'Customer'
+        'file': 'bills/bill_20260221_195432.jpg',
+        'author': 'Customer'
       }
-];
+    ];
 
     function renderBills() {
       const container = document.getElementById('feedbackMarquee');

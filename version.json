@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
-    "message": "Chào mừng bạn sử dụng Bot!",
+    "version": "1.1.0",
+    "message": "Fix: Auto-connect failure on disconnection and eDragon deployment error.",
     "download_url": "https://autofarmcoc.shop/"
 }

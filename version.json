@@ -1,5 +1,5 @@
 {
-    "version": "1.2.0",
-    "message": "The new bot version is available now. Please check your previous Drive link to download. Truy cập google drive cũ để tải phiên bản mới của bot",
+    "version": "1.2.1",
+    "message": "Fixed Bug New Event, Đã sửa lỗi sự kiện",
     "download_url": "https://autofarmcoc.shop/"
 }

@@ -1,5 +1,5 @@
 {
-    "version": "1.2.3",
-    "message": "Fixed Bug new event, Access the shared old Drive folder to download the new version., Đã sửa lỗi sự kiện mới, Truy cập thư mục Drive cũ được chia sẻ để tải phiên bản mới.",
+    "version": "1.2.5",
+    "message": "• Fixed: New event & troop release speed bugs / Đã sửa lỗi sự kiện mới & tốc độ thả lính.\n• Updated in Drive folder for Donators / Đã cập nhật trên Drive cho khách Donated.",
     "download_url": "https://autofarmcoc.shop/"
 }
